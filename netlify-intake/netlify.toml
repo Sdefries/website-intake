@@ -1,0 +1,10 @@
+# Only needed if you deploy to Netlify instead of GitHub Pages
+# GitHub Pages uses the index.html directly — no config needed there
+
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/client/*"
+  to = "/index.html"
+  status = 200
