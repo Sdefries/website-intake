@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,25 +142,26 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
 .accent-chip-remove:hover{color:#ef4444}
 .add-accent-btn{display:flex;align-items:center;gap:5px;padding:6px 12px;border-radius:10px;border:1.5px dashed rgba(0,131,198,.4);background:rgba(0,131,198,.05);color:var(--primary);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s;font-family:inherit}
 .add-accent-btn:hover{background:rgba(0,131,198,.12);border-color:var(--primary)}
-.font-slot{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:16px;padding:18px;margin-bottom:18px}
-.font-slot-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:12px;flex-wrap:wrap}
-.font-slot-label{display:flex;align-items:center;gap:10px}
-.font-slot-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.font-slot-title{font-size:14px;font-weight:800;color:#0a1628}
-.font-slot-sub{font-size:11px;color:#94a3b8;margin-top:2px}
-.font-slot-selected{font-size:12px;font-weight:700;color:#0083C6;background:#eff6ff;border-radius:100px;padding:4px 12px;flex-shrink:0;white-space:nowrap}
-.font-slot-selected.empty{color:#94a3b8;background:#f1f5f9}
-.font-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px}
-.font-section-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;padding:8px 4px 4px;grid-column:1/-1}
-.font-card{border:2px solid var(--border);border-radius:14px;padding:12px 10px 10px;cursor:pointer;transition:all .15s;background:white;position:relative;user-select:none;text-align:center}
-.font-card:hover{border-color:var(--primary);background:var(--primary-light)}
-.font-card.selected-1{border-color:#0083C6;background:rgba(0,131,198,.08)}
-.font-card.selected-2{border-color:#3DAA69;background:rgba(61,170,105,.08)}
-.font-card.selected-3{border-color:#7c3aed;background:rgba(124,58,237,.08)}
-.font-card-preview{font-size:22px;font-weight:700;line-height:1;margin-bottom:5px;color:var(--navy)}
-.font-card-name{font-size:10px;font-weight:700;color:#334155;line-height:1.2}
-.font-card-cat{font-size:9px;color:var(--subtle);margin-top:2px}
-.font-badge{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:white}
+/* FONT PICKER */
+.font-picker{position:relative;width:100%}
+.fp-trigger{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border:1.5px solid var(--border);border-radius:12px;background:white;cursor:pointer;transition:border-color .15s,box-shadow .15s;user-select:none}
+.fp-trigger:hover,.fp-trigger.open{border-color:var(--primary);box-shadow:0 0 0 3px rgba(0,131,198,.12)}
+.fp-trigger-preview{font-size:15px;font-weight:600;color:var(--text);flex:1}
+.fp-trigger-preview.empty{color:var(--subtle);font-size:14px;font-weight:400;font-style:italic}
+.fp-trigger-arrow{color:var(--subtle);font-size:12px;margin-left:8px;transition:transform .2s}
+.fp-trigger.open .fp-trigger-arrow{transform:rotate(180deg)}
+.fp-dropdown{position:absolute;top:calc(100% + 6px);left:0;right:0;background:white;border:1.5px solid var(--border);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.13);z-index:200;overflow:hidden}
+.fp-hover-preview{padding:14px 16px;min-height:70px;border-bottom:1px solid var(--border);font-size:28px;font-weight:700;color:var(--navy);line-height:1.2;background:#fafbfc;display:flex;align-items:center;transition:font-family .15s}
+.fp-hover-preview.placeholder{font-size:13px;font-weight:400;color:var(--subtle);font-family:'Rethink Sans',sans-serif!important}
+.fp-list{max-height:240px;overflow-y:auto;padding:6px}
+.fp-list::-webkit-scrollbar{width:4px}.fp-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.fp-group-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--subtle);padding:8px 10px 4px;display:block}
+.fp-option{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:10px;cursor:pointer;transition:background .1s}
+.fp-option:hover{background:var(--primary-light)}
+.fp-option.selected{background:rgba(0,131,198,.12)}
+.fp-option-name{font-size:14px;font-weight:600;color:var(--navy)}
+.fp-option-cat{font-size:11px;color:var(--subtle)}
+.fp-option-check{color:var(--primary);font-weight:800;font-size:14px}
 .chip-group{display:flex;flex-wrap:wrap;gap:8px}
 .chip{padding:7px 14px;border:1.5px solid var(--border);border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;transition:all .12s;background:white;color:var(--muted);user-select:none;font-family:inherit}
 .chip:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light)}
@@ -214,13 +214,8 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
   <div class="thankyou-hero">
     <div class="thankyou-hero-inner">
       <div class="thankyou-logo">
-        <svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="16" cy="16" r="16" fill="white" opacity="0.2"/>
-          <text x="9" y="21" font-size="16">🐄</text>
-          <text x="40" y="13" font-family="'Rethink Sans',sans-serif" font-weight="800" font-size="10" fill="white" opacity="0.7">Sponsor a</text>
-          <text x="40" y="26" font-family="'Rethink Sans',sans-serif" font-weight="800" font-size="10" fill="white">Purpose</text>
-        </svg>
-      </div>
+          <img src="https://www.sponsorapurpose.org/header-logo.svg" alt="Sponsor a Purpose" style="height:32px;width:auto;filter:brightness(0) invert(1);opacity:0.9;">
+        </div>
       <div class="thankyou-icon">🎉</div>
       <h2>We got it — thank you!</h2>
       <p>Your intake form has been submitted. Our team will review everything and be in touch within 1–2 business days.</p>
@@ -250,11 +245,7 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
       <div class="header-top">
         <!-- SAP Logo -->
         <div class="header-logo">
-          <div class="logo-mark">🐄</div>
-          <div>
-            <div class="logo-text">Sponsor a Purpose</div>
-            <div class="logo-sub">Nonprofit Web Design &amp; Consulting</div>
-          </div>
+          <img src="https://www.sponsorapurpose.org/header-logo.svg" alt="Sponsor a Purpose" style="height:36px;width:auto;filter:brightness(0) invert(1);display:block;">
         </div>
         <div class="header-eyebrow">Website Intake Form</div>
       </div>
@@ -393,27 +384,52 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
       <div class="section-card">
         <div class="section-header"><span class="section-icon">✏️</span><span class="section-title">Typography</span></div>
         <div class="section-body">
-          <div class="font-slot" id="slot_heading">
-            <div class="font-slot-header">
-              <div class="font-slot-label"><div class="font-slot-dot" style="background:#0083C6"></div><div><div class="font-slot-title">Heading Font</div><div class="font-slot-sub">Titles, section headers, and CTAs</div></div></div>
-              <div class="font-slot-selected empty" id="headingSelected">None selected</div>
+
+          <!-- HEADING FONT -->
+          <div class="field-group">
+            <label><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#0083C6;margin-right:6px;vertical-align:middle"></span>Heading Font <span class="hint">— Titles, section headers, CTAs</span></label>
+            <div class="font-picker" id="fp_heading">
+              <div class="fp-trigger" onclick="toggleFontPicker('heading')" id="fp_heading_trigger">
+                <span class="fp-trigger-preview empty" id="fp_heading_preview">None selected</span>
+                <span class="fp-trigger-arrow">▾</span>
+              </div>
+              <div class="fp-dropdown" id="fp_heading_dropdown" style="display:none">
+                <div class="fp-hover-preview" id="fp_heading_hover">Hover a font to preview</div>
+                <div class="fp-list" id="fp_heading_list"></div>
+              </div>
             </div>
-            <div class="font-grid" id="fontGrid_heading"></div>
           </div>
-          <div class="font-slot" id="slot_body">
-            <div class="font-slot-header">
-              <div class="font-slot-label"><div class="font-slot-dot" style="background:#3DAA69"></div><div><div class="font-slot-title">Body Font</div><div class="font-slot-sub">Paragraphs and general content</div></div></div>
-              <div class="font-slot-selected empty" id="bodySelected">None selected</div>
+
+          <!-- BODY FONT -->
+          <div class="field-group">
+            <label><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#3DAA69;margin-right:6px;vertical-align:middle"></span>Body Font <span class="hint">— Paragraphs and general content</span></label>
+            <div class="font-picker" id="fp_body">
+              <div class="fp-trigger" onclick="toggleFontPicker('body')" id="fp_body_trigger">
+                <span class="fp-trigger-preview empty" id="fp_body_preview">None selected</span>
+                <span class="fp-trigger-arrow">▾</span>
+              </div>
+              <div class="fp-dropdown" id="fp_body_dropdown" style="display:none">
+                <div class="fp-hover-preview" id="fp_body_hover">Hover a font to preview</div>
+                <div class="fp-list" id="fp_body_list"></div>
+              </div>
             </div>
-            <div class="font-grid" id="fontGrid_body"></div>
           </div>
-          <div class="font-slot" id="slot_accent">
-            <div class="font-slot-header">
-              <div class="font-slot-label"><div class="font-slot-dot" style="background:#7c3aed"></div><div><div class="font-slot-title">Accent Font <span style="font-weight:400;color:#94a3b8;font-size:11px">Optional</span></div><div class="font-slot-sub">Pull quotes, labels, callouts</div></div></div>
-              <div class="font-slot-selected empty" id="accentSelected">None selected</div>
+
+          <!-- ACCENT FONT -->
+          <div class="field-group">
+            <label><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#7c3aed;margin-right:6px;vertical-align:middle"></span>Accent Font <span class="hint">— Optional: pull quotes, labels, callouts</span></label>
+            <div class="font-picker" id="fp_accent">
+              <div class="fp-trigger" onclick="toggleFontPicker('accent')" id="fp_accent_trigger">
+                <span class="fp-trigger-preview empty" id="fp_accent_preview">None selected</span>
+                <span class="fp-trigger-arrow">▾</span>
+              </div>
+              <div class="fp-dropdown" id="fp_accent_dropdown" style="display:none">
+                <div class="fp-hover-preview" id="fp_accent_hover">Hover a font to preview</div>
+                <div class="fp-list" id="fp_accent_list"></div>
+              </div>
             </div>
-            <div class="font-grid" id="fontGrid_accent"></div>
           </div>
+
         </div>
       </div>
 
@@ -526,6 +542,7 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
     <div class="preview-panel">
       <div class="preview-box">
         <div class="preview-label">Live Preview</div>
+        <div style="font-size:10px;color:#94a3b8;margin:-6px 0 10px;line-height:1.4;">Shows colors, fonts &amp; layout direction only — not a final design.</div>
 
         <!-- Mock website — 4 sections -->
         <div class="lp-mock">
@@ -533,8 +550,7 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
           <!-- SECTION 1: HERO -->
           <div class="lp-nav" id="lp_nav" style="background:linear-gradient(135deg,#0083C6ee,#0083C6bb)">
             <div class="lp-nav-brand">
-              <div class="lp-nav-icon" id="lp_nav_icon">🐄</div>
-              <span class="lp-nav-name" id="lp_orgname">Your Organization</span>
+              <img src="https://www.sponsorapurpose.org/header-logo.svg" alt="SAP" id="lp_nav_icon" style="height:16px;width:auto;filter:brightness(0) invert(1);display:block;">
             </div>
             <div class="lp-nav-links">
               <span class="lp-nav-link">About</span>
@@ -596,8 +612,7 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
           <!-- SECTION 5: FOOTER -->
           <div class="lp-footer" id="lp_footer" style="background:linear-gradient(135deg,#0083C6ee,#0083C6bb)">
             <div class="lp-footer-brand">
-              <span class="lp-footer-icon" id="lp_footer_emoji">🐄</span>
-              <span class="lp-footer-name" id="lp_footer_name">Your Organization</span>
+              <img src="https://www.sponsorapurpose.org/header-logo.svg" alt="SAP" id="lp_footer_logo" style="height:14px;width:auto;filter:brightness(0) invert(1);display:block;">
             </div>
             <div class="lp-footer-tagline">Your Purpose is Our Passion.</div>
             <div class="lp-footer-cta" id="lp_footer_cta" style="background:#3DAA69;color:white">Donate Today</div>
@@ -644,21 +659,6 @@ const NP_TYPES=[
   {name:'Technology Access',emoji:'💻',color:'#1D4ED8'},{name:'Economic Development',emoji:'📈',color:'#047857'},
   {name:'Civic Engagement',emoji:'🗳️',color:'#1E40AF'},{name:'Foundation / Grantmaking',emoji:'🏦',color:'#7C3AED'},
 ];
-const FONTS=[
-  {n:'Montserrat',c:'Variable · Sans'},{n:'Rethink Sans',c:'Variable · Sans'},{n:'Plus Jakarta Sans',c:'Variable · Modern'},
-  {n:'DM Sans',c:'Variable · Clean'},{n:'Outfit',c:'Variable · Geometric'},{n:'Nunito',c:'Variable · Rounded'},
-  {n:'Raleway',c:'Variable · Elegant'},{n:'Poppins',c:'Variable · Friendly'},{n:'Work Sans',c:'Variable · Editorial'},
-  {n:'Josefin Sans',c:'Variable · Art Deco'},{n:'Inter',c:'Variable · Minimal'},{n:'Figtree',c:'Variable · Geometric'},
-  {n:'Manrope',c:'Variable · Modern'},{n:'Urbanist',c:'Variable · Minimal'},{n:'Lexend',c:'Variable · Readable'},
-  {n:'Jost',c:'Variable · Geometric'},{n:'Barlow',c:'Variable · Condensed'},{n:'Cabin',c:'Variable · Humanist'},
-  {n:'Karla',c:'Variable · Grotesque'},{n:'Mulish',c:'Variable · Clean'},{n:'Space Grotesk',c:'Variable · Tech'},
-  {n:'Syne',c:'Variable · Display'},{n:'Epilogue',c:'Variable · Modern'},{n:'Exo 2',c:'Variable · Futuristic'},
-  {n:'Unbounded',c:'Variable · Bold'},{n:'Playfair Display',c:'Variable · Serif'},{n:'Lora',c:'Variable · Serif'},
-  {n:'Source Serif 4',c:'Variable · Serif'},{n:'Cormorant Garamond',c:'Variable · Luxury'},
-  {n:'Fraunces',c:'Variable · Optical'},{n:'Bitter',c:'Variable · Slab'},{n:'Crimson Pro',c:'Variable · Classic'},
-  {n:'EB Garamond',c:'Variable · Elegant'},{n:'Lato',c:'Standard · Classic'},
-  {n:'Merriweather',c:'Standard · Serif'},{n:'Oswald',c:'Standard · Condensed'},
-];
 const CTAS=['Donate','Volunteer','Adopt','Foster','Sponsor','Apply','Register','Get Help','Learn More','Sign Petition','Join Us','Give Now','Take Action'];
 const PAGES=['Home','About','Programs / Services','Donate','Volunteer','Events','Blog / News','Contact','Team','Impact / Annual Report','Get Help','Apply','Membership','Stories','Gallery'];
 const FUNCTIONAL=['SponsorAPurpose Donations','SponsorAPurpose CRM','Event Calendar','Volunteer Management','Email Newsletter','Membership System','Online Shop','Member Portal'];
@@ -670,7 +670,7 @@ let state={npType:'',fonts:{heading:null,body:null,accent:null},fontPrefs:[],pri
 function getClientId(){const p=window.location.pathname.split('/').filter(Boolean);const i=p.indexOf('client');return i!==-1&&p[i+1]?p[i+1]:'direct';}
 
 window.addEventListener('DOMContentLoaded',()=>{
-  renderTypeGrid();renderFontGrid();
+  renderTypeGrid();
   renderChips('primaryCtaGroup',CTAS,'primaryCta',true,'on-primary');
   renderChips('secondaryCtaGroup',CTAS,'secondaryCtas',false,'on-primary');
   renderChips('pagesGroup',PAGES,'pages',false,'on-primary');
@@ -692,47 +692,88 @@ function selectType(name,emoji){
   updateProgress();updatePreview();
 }
 
-// ── FONT RENDERING ────────────────────────────────────────────────────
-function renderFontGrid(){
-  const slots=[
-    {id:'fontGrid_heading',slot:'heading',color:'#0083C6',cls:'selected-1'},
-    {id:'fontGrid_body',   slot:'body',   color:'#3DAA69',cls:'selected-2'},
-    {id:'fontGrid_accent', slot:'accent', color:'#7c3aed',cls:'selected-3'},
-  ];
-  const groups={};
-  FONTS.forEach(f=>{const grp=f.c.split(' · ')[0];const sub=f.c.split(' · ')[1]||f.c;if(!groups[grp])groups[grp]=[];groups[grp].push({...f,sub});});
-  slots.forEach(({id,slot,color,cls})=>{
-    const el=document.getElementById(id);if(!el)return;
-    let html='';
-    Object.entries(groups).forEach(([grp,fonts])=>{
-      html+=`<div class="font-section-label">${grp}</div>`;
-      fonts.forEach(f=>{
-        const sel=state.fonts[slot]===f.n;
-        html+=`<div class="font-card${sel?' '+cls:''}" onclick="selectFont('${slot}','${f.n.replace(/'/g,"\\'")}','${color}')">
-          <div class="font-card-preview" style="font-family:'${f.n}',sans-serif;color:${sel?color:'#0a1628'}">Aa</div>
-          <div class="font-card-name">${f.n}</div>
-          <div class="font-card-cat">${f.sub}</div>
-          ${sel?`<div class="font-badge" style="background:${color}">✓</div>`:''}
-        </div>`;
-      });
+// ── FONT PICKER ───────────────────────────────────────────────────
+const FONT_GROUPS=[
+  {group:'Variable · Sans',fonts:['Montserrat','Rethink Sans','Plus Jakarta Sans','DM Sans','Outfit','Nunito','Raleway','Poppins','Work Sans','Josefin Sans','Inter','Figtree','Manrope','Urbanist','Lexend','Jost','Barlow','Cabin','Karla','Mulish','Space Grotesk']},
+  {group:'Variable · Display',fonts:['Syne','Epilogue','Exo 2','Unbounded']},
+  {group:'Variable · Serif',fonts:['Playfair Display','Lora','Source Serif 4','Cormorant Garamond','Fraunces','Bitter','Crimson Pro','EB Garamond']},
+  {group:'Standard',fonts:['Lato','Merriweather','Oswald']},
+];
+
+function buildFontList(slot){
+  const listEl=document.getElementById('fp_'+slot+'_list');
+  if(!listEl)return;
+  let html='';
+  FONT_GROUPS.forEach(({group,fonts})=>{
+    html+=`<span class="fp-group-label">${group}</span>`;
+    fonts.forEach(f=>{
+      const sel=state.fonts[slot]===f;
+      const cat=group.split(' · ')[1]||group;
+      html+=`<div class="fp-option${sel?' selected':''}"
+        onmouseenter="previewFont('${slot}','${f.replace(/'/g,"\\'")}')"
+        onmouseleave="clearFontPreview('${slot}')"
+        onclick="selectFontPicker('${slot}','${f.replace(/'/g,"\\'")}')">
+        <span class="fp-option-name" style="font-family:'${f}',sans-serif">${f}</span>
+        <span class="fp-option-cat">${cat}</span>
+        ${sel?'<span class="fp-option-check">✓</span>':''}
+      </div>`;
     });
-    el.innerHTML=html;
   });
+  listEl.innerHTML=html;
 }
-function selectFont(slot,name,color){
-  state.fonts[slot]=state.fonts[slot]===name?null:name;
-  const ids={heading:'headingSelected',body:'bodySelected',accent:'accentSelected'};
-  const lbl=document.getElementById(ids[slot]);
-  if(lbl){
-    if(state.fonts[slot]){lbl.textContent=state.fonts[slot];lbl.className='font-slot-selected';}
-    else{lbl.textContent='None selected';lbl.className='font-slot-selected empty';}
+
+function toggleFontPicker(slot){
+  const dd=document.getElementById('fp_'+slot+'_dropdown');
+  const trigger=document.getElementById('fp_'+slot+'_trigger');
+  const isOpen=dd.style.display!=='none';
+  ['heading','body','accent'].forEach(s=>{
+    document.getElementById('fp_'+s+'_dropdown').style.display='none';
+    document.getElementById('fp_'+s+'_trigger').classList.remove('open');
+  });
+  if(!isOpen){buildFontList(slot);dd.style.display='block';trigger.classList.add('open');}
+}
+
+function previewFont(slot,fontName){
+  const prev=document.getElementById('fp_'+slot+'_hover');
+  if(!prev)return;
+  prev.style.fontFamily=`'${fontName}',sans-serif`;
+  prev.textContent='The quick brown fox jumps over the lazy dog';
+  prev.classList.remove('placeholder');
+}
+function clearFontPreview(slot){
+  const prev=document.getElementById('fp_'+slot+'_hover');
+  if(!prev)return;
+  const sel=state.fonts[slot];
+  if(sel){prev.style.fontFamily=`'${sel}',sans-serif`;prev.textContent='The quick brown fox jumps over the lazy dog';}
+  else{prev.style.fontFamily="'Rethink Sans',sans-serif";prev.textContent='Hover a font to preview';prev.classList.add('placeholder');}
+}
+
+function selectFontPicker(slot,fontName){
+  state.fonts[slot]=state.fonts[slot]===fontName?null:fontName;
+  const prev=document.getElementById('fp_'+slot+'_preview');
+  if(prev){
+    if(state.fonts[slot]){prev.textContent=state.fonts[slot];prev.style.fontFamily=`'${state.fonts[slot]}',sans-serif`;prev.classList.remove('empty');}
+    else{prev.textContent='None selected';prev.style.fontFamily='';prev.classList.add('empty');}
   }
-  renderFontGrid();
+  document.getElementById('fp_'+slot+'_dropdown').style.display='none';
+  document.getElementById('fp_'+slot+'_trigger').classList.remove('open');
+  clearFontPreview(slot);
   state.fontPrefs=[state.fonts.heading,state.fonts.body,state.fonts.accent].filter(Boolean);
   const hid=document.getElementById('n_font_prefs');
   if(hid)hid.value=`Heading: ${state.fonts.heading||'Not selected'} | Body: ${state.fonts.body||'Not selected'} | Accent: ${state.fonts.accent||'Not selected'}`;
   updateProgress();updatePreview();
 }
+
+document.addEventListener('click',e=>{
+  if(!e.target.closest('.font-picker')){
+    ['heading','body','accent'].forEach(s=>{
+      const dd=document.getElementById('fp_'+s+'_dropdown');
+      const tr=document.getElementById('fp_'+s+'_trigger');
+      if(dd)dd.style.display='none';
+      if(tr)tr.classList.remove('open');
+    });
+  }
+});
 
 function renderChips(id,items,key,single,onCls){
   document.getElementById(id).innerHTML=items.map(v=>`<button type="button" class="chip" onclick="toggleChip(this,'${key}','${v.replace(/'/g,"\\'")}',${single},'${onCls}')">${v}</button>`).join('');
@@ -835,10 +876,6 @@ function updatePreview(){
   // Nav
   const nav=document.getElementById('lp_nav');
   if(nav) nav.style.background=`linear-gradient(135deg,${validPri}ee,${validPri}bb)`;
-  const navIcon=document.getElementById('lp_nav_icon');
-  if(navIcon) navIcon.textContent=npEmoji||'🐄';
-  const orgEl=document.getElementById('lp_orgname');
-  if(orgEl){orgEl.textContent=orgName;orgEl.style.fontFamily=hf;}
 
   // Hero
   const hero=document.getElementById('lp_hero');
@@ -894,10 +931,6 @@ function updatePreview(){
   // Footer
   const footer=document.getElementById('lp_footer');
   if(footer) footer.style.background=`linear-gradient(135deg,${validPri}ee,${validPri}bb)`;
-  const footerName=document.getElementById('lp_footer_name');
-  if(footerName){footerName.textContent=orgName;footerName.style.fontFamily=hf;}
-  const footerEmoji=document.getElementById('lp_footer_emoji');
-  if(footerEmoji) footerEmoji.textContent=npEmoji||'🐄';
   const footerCta=document.getElementById('lp_footer_cta');
   if(footerCta){footerCta.style.background=validSec;footerCta.style.color=textOnSec;footerCta.style.fontFamily=hf;footerCta.textContent=state.primaryCta||'Donate Today';}
 
