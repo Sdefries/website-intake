@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1025,4 +1026,13 @@ async function handleSubmit(){
     const json=await res.json();
     if(!json.success)throw new Error(json.message||'Failed');
     document.getElementById('mainForm').style.display='none';
-    document.getElementById('thankYouScreen').style.dis
+    document.getElementById('thankYouScreen').style.display='block';
+    window.scrollTo(0,0);
+  }catch(err){
+    btn.disabled=false;btn.textContent='Submit Intake Form →';
+    alert('Submission failed: '+(err.message||'Unknown error')+'\n\nPlease try again or email us directly.');
+  }
+}
+</script>
+</body>
+</html>
