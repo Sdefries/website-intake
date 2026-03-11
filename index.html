@@ -12,26 +12,107 @@
 :root{--primary:#0083C6;--primary-dark:#006aa0;--primary-light:#e8f4fb;--secondary:#3DAA69;--navy:#0a1628;--bg:#f0f6fb;--card:#ffffff;--border:#e2e8f0;--text:#0a1628;--muted:#64748b;--subtle:#94a3b8}
 html{scroll-behavior:smooth}
 body{font-family:'Rethink Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+/* HEADER */
 .header{background:linear-gradient(135deg,#0a1628 0%,#0f2442 60%,#0a1628 100%);position:relative;overflow:hidden}
 .header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(0,131,198,.15) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(61,170,105,.1) 0%,transparent 50%)}
-.header-inner{position:relative;max-width:720px;margin:0 auto;padding:48px 24px 52px}
-.header-logo{display:flex;align-items:center;gap:10px;margin-bottom:32px}
-.logo-mark{width:36px;height:36px;background:var(--primary);border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;color:white;flex-shrink:0}
-.logo-text{color:white;font-weight:700;font-size:15px;line-height:1}
+.header-inner{position:relative;max-width:1200px;margin:0 auto;padding:40px 32px 44px}
+.header-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.header-logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:36px;height:36px;background:var(--primary);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.logo-text{color:white;font-weight:800;font-size:16px;line-height:1}
 .logo-sub{color:rgba(255,255,255,.4);font-size:11px;margin-top:2px}
-.header-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(0,131,198,.2);border:1px solid rgba(0,131,198,.3);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:700;color:#7dd3fc;letter-spacing:.08em;text-transform:uppercase;margin-bottom:16px}
+.header-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(0,131,198,.2);border:1px solid rgba(0,131,198,.3);border-radius:100px;padding:4px 12px;font-size:11px;font-weight:700;color:#7dd3fc;letter-spacing:.08em;text-transform:uppercase}
 .header-eyebrow::before{content:'●';font-size:7px;color:#3DAA69}
-.header h1{font-size:clamp(26px,5vw,38px);font-weight:800;color:white;line-height:1.15;margin-bottom:12px;letter-spacing:-.5px}
+.header-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.header h1{font-size:clamp(22px,3.5vw,34px);font-weight:800;color:white;line-height:1.15;margin-bottom:8px;letter-spacing:-.5px}
 .header h1 span{color:#7dd3fc}
-.header-desc{color:rgba(255,255,255,.55);font-size:15px;line-height:1.6;max-width:520px}
-.progress-bar-wrap{margin-top:28px;display:flex;align-items:center;gap:12px}
+.header-desc{color:rgba(255,255,255,.5);font-size:13px;line-height:1.6}
+.progress-bar-wrap{display:flex;align-items:center;gap:12px;min-width:200px}
 .progress-track{flex:1;height:4px;background:rgba(255,255,255,.1);border-radius:100px;overflow:hidden}
 .progress-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--primary),var(--secondary));transition:width .4s ease;width:0%}
 .progress-pct{font-size:12px;font-weight:700;color:rgba(255,255,255,.5);min-width:36px;text-align:right}
-.form-body{max-width:720px;margin:0 auto;padding:32px 24px 80px}
-.section-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:20px;transition:box-shadow .2s}
+/* SPLIT LAYOUT */
+.form-wrap{max-width:1200px;margin:0 auto;padding:24px 32px 80px;display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+@media(max-width:900px){.form-wrap{grid-template-columns:1fr}.preview-panel{display:none}}
+/* STICKY PREVIEW */
+.preview-panel{position:sticky;top:24px;max-height:calc(100vh - 48px);overflow-y:auto}
+.preview-panel::-webkit-scrollbar{width:4px}.preview-panel::-webkit-scrollbar-thumb{background:rgba(0,0,0,.1);border-radius:2px}
+.preview-box{background:white;border:1px solid var(--border);border-radius:20px;padding:16px;max-height:calc(100vh - 80px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
+.preview-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--subtle);margin-bottom:12px;font-family:'Rethink Sans',sans-serif}
+/* Live preview mock */
+.lp-mock{border-radius:14px;overflow:hidden;border:1.5px solid var(--border);box-shadow:0 4px 20px rgba(0,0,0,.07)}
+.lp-nav{padding:8px 14px;display:flex;align-items:center;justify-content:space-between;transition:background .3s}
+.lp-nav-brand{display:flex;align-items:center;gap:6px}
+.lp-nav-icon{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:11px}
+.lp-nav-name{font-size:10px;font-weight:800;color:white;transition:color .3s}
+.lp-nav-links{display:flex;gap:8px;align-items:center}
+.lp-nav-link{font-size:9px;color:rgba(255,255,255,.55)}
+.lp-nav-btn{background:rgba(255,255,255,.2);border-radius:100px;padding:3px 9px;font-size:9px;font-weight:700;color:white}
+.lp-hero{padding:18px 16px;transition:background .3s}
+.lp-eyebrow{font-size:8px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:7px}
+.lp-headline{font-size:18px;font-weight:800;color:white;line-height:1.2;margin-bottom:7px}
+.lp-body{font-size:10px;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:13px}
+.lp-cta{display:inline-block;border-radius:100px;padding:7px 16px;font-size:10px;font-weight:700;color:white;transition:background .3s}
+.lp-cta-ghost{display:inline-block;border-radius:100px;padding:6px 14px;font-size:10px;font-weight:600;border:1.5px solid rgba(255,255,255,.35);color:rgba(255,255,255,.75)}
+/* Impact bar */
+.lp-impact-bar{display:flex;align-items:center;justify-content:space-around;padding:12px 14px;background:white;border-top:3px solid;transition:border-color .3s}
+.lp-impact-stat{flex:1;text-align:center}
+.lp-impact-val{font-size:15px;font-weight:800;line-height:1;transition:color .3s}
+.lp-impact-lab{font-size:8px;color:#64748b;margin-top:2px;text-transform:uppercase;letter-spacing:.06em}
+.lp-impact-divider{width:1px;height:28px;background:#e2e8f0;flex-shrink:0}
+/* Program cards */
+.lp-programs{background:#f8fafc;padding:12px 14px;border-top:1px solid #e2e8f0}
+.lp-prog-header{margin-bottom:9px}
+.lp-prog-eyebrow{font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;transition:color .3s}
+.lp-prog-headline{font-size:12px;font-weight:800;color:#0f172a;line-height:1.3}
+.lp-prog-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.lp-prog-card{border-radius:8px;padding:8px 10px;border:1px solid;transition:background .3s,border-color .3s}
+.lp-prog-card-icon{font-size:14px;margin-bottom:4px}
+.lp-prog-card-name{font-size:10px;font-weight:700;color:#1e293b;line-height:1.3}
+.lp-prog-card-desc{font-size:9px;color:#64748b;margin-top:2px;line-height:1.4}
+/* Donation card */
+.lp-donate-section{padding:12px 14px;border-top:1px solid #e2e8f0;transition:background .3s}
+.lp-donate-label{font-size:10px;font-weight:700;color:white;margin-bottom:9px;text-align:center}
+.lp-amount-row{display:flex;gap:6px;justify-content:center;margin-bottom:9px}
+.lp-amount-chip{border-radius:100px;padding:5px 12px;font-size:10px;font-weight:600;background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.25)}
+.lp-amount-active{background:white!important;border-color:white!important;transition:color .3s}
+.lp-donate-btn{border-radius:100px;padding:8px 0;font-size:10px;font-weight:700;text-align:center;margin-bottom:7px;transition:background .3s,color .3s}
+.lp-donate-sub{font-size:8px;color:rgba(255,255,255,.5);text-align:center}
+/* Footer */
+.lp-footer{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:8px;transition:background .3s}
+.lp-footer-brand{display:flex;align-items:center;gap:5px}
+.lp-footer-icon{font-size:12px}
+.lp-footer-name{font-size:10px;font-weight:800;color:white}
+.lp-footer-tagline{font-size:8px;color:rgba(255,255,255,.45);flex:1;text-align:center}
+.lp-footer-cta{border-radius:100px;padding:4px 11px;font-size:9px;font-weight:700;transition:background .3s,color .3s}
+.lp-stats{background:white;padding:10px 14px;display:flex;gap:8px;border-top-width:3px;border-top-style:solid;transition:border-color .3s}
+.lp-stat{flex:1;text-align:center}
+.lp-stat-val{font-size:14px;font-weight:800;transition:color .3s}
+.lp-stat-lab{font-size:8px;color:var(--muted);margin-top:1px}
+.lp-card{background:#f8fafc;padding:12px 14px;border-top:1px solid var(--border)}
+.lp-card-title{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.lp-card-body{font-size:10px;color:var(--muted);line-height:1.6}
+.lp-card-tags{display:flex;gap:5px;margin-top:9px;flex-wrap:wrap}
+.lp-tag{border-radius:7px;padding:4px 9px;font-size:9px;font-weight:700;transition:background .3s,color .3s}
+/* Contrast badges */
+.contrast-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+.contrast-badge{background:white;border:1px solid var(--border);border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:7px}
+.contrast-swatch{border-radius:6px;padding:4px 7px;font-size:11px;font-weight:700;min-width:32px;text-align:center;flex-shrink:0;transition:background .3s}
+.contrast-info{flex:1;min-width:0}
+.contrast-label{font-size:10px;font-weight:700;color:#334155;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.contrast-ratio{font-size:9px;color:var(--subtle)}
+.contrast-grade{font-size:9px;font-weight:800;border-radius:5px;padding:2px 6px;flex-shrink:0}
+.harmony-row{margin-top:8px;border-radius:10px;padding:9px 12px;display:flex;align-items:center;gap:8px}
+/* Font legend */
+.font-legend{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.font-legend-item{display:flex;align-items:center;gap:5px;background:white;border:1px solid var(--border);border-radius:100px;padding:3px 9px 3px 7px}
+.font-legend-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.font-legend-slot{font-size:9px;font-weight:700;color:var(--subtle);text-transform:uppercase;letter-spacing:.06em}
+.font-legend-name{font-size:10px;font-weight:700;color:var(--navy)}
+/* SECTION CARDS */
+.section-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:16px;transition:box-shadow .2s}
 .section-card:focus-within{box-shadow:0 0 0 3px rgba(0,131,198,.12)}
-.section-header{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--border);background:var(--bg)}
+.section-header{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:1px solid var(--border);background:var(--bg)}
 .section-icon{font-size:18px;line-height:1;flex-shrink:0}
 .section-title{font-weight:800;font-size:14px;color:var(--navy)}
 .section-body{padding:20px;display:flex;flex-direction:column;gap:18px}
@@ -73,20 +154,13 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
 .font-section-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#94a3b8;padding:8px 4px 4px;grid-column:1/-1}
 .font-card{border:2px solid var(--border);border-radius:14px;padding:12px 10px 10px;cursor:pointer;transition:all .15s;background:white;position:relative;user-select:none;text-align:center}
 .font-card:hover{border-color:var(--primary);background:var(--primary-light)}
-.font-card.selected-1{border-color:var(--primary);background:rgba(0,131,198,.08)}
-.font-card.selected-2{border-color:var(--secondary);background:rgba(61,170,105,.08)}
+.font-card.selected-1{border-color:#0083C6;background:rgba(0,131,198,.08)}
+.font-card.selected-2{border-color:#3DAA69;background:rgba(61,170,105,.08)}
 .font-card.selected-3{border-color:#7c3aed;background:rgba(124,58,237,.08)}
-.font-card.disabled{opacity:.35;cursor:not-allowed}
 .font-card-preview{font-size:22px;font-weight:700;line-height:1;margin-bottom:5px;color:var(--navy)}
 .font-card-name{font-size:10px;font-weight:700;color:#334155;line-height:1.2}
 .font-card-cat{font-size:9px;color:var(--subtle);margin-top:2px}
 .font-badge{position:absolute;top:6px;right:6px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:900;color:white}
-.font-preview-panel{margin-top:12px;border-radius:14px;border:1.5px solid var(--border);overflow:hidden;background:white}
-.font-preview-item{padding:12px 16px;border-bottom:1px solid #f1f5f9}
-.font-preview-item:last-child{border-bottom:none}
-.font-preview-headline{font-size:17px;font-weight:700;color:var(--navy);line-height:1.2}
-.font-preview-body{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4}
-.font-preview-label{font-size:10px;font-weight:700;color:var(--subtle);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px}
 .chip-group{display:flex;flex-wrap:wrap;gap:8px}
 .chip{padding:7px 14px;border:1.5px solid var(--border);border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;transition:all .12s;background:white;color:var(--muted);user-select:none;font-family:inherit}
 .chip:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light)}
@@ -106,10 +180,12 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
 .submit-btn:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(0,131,198,.45)}
 .submit-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
 .submit-note{text-align:center;font-size:12px;color:var(--subtle);margin-top:10px}
+/* THANK YOU */
 #thankYouScreen{display:none;min-height:100vh;background:var(--bg)}
 .thankyou-hero{background:linear-gradient(135deg,#0a1628 0%,#0f2442 100%);padding:60px 24px;text-align:center;position:relative;overflow:hidden}
 .thankyou-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(0,131,198,.2) 0%,transparent 70%)}
 .thankyou-hero-inner{position:relative;max-width:520px;margin:0 auto}
+.thankyou-logo{margin-bottom:24px;display:flex;justify-content:center}
 .thankyou-icon{width:80px;height:80px;background:linear-gradient(135deg,#3DAA69,#2d8a52);border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:36px;margin:0 auto 24px;box-shadow:0 12px 40px rgba(61,170,105,.4)}
 .thankyou-hero h2{font-size:clamp(26px,5vw,36px);font-weight:800;color:white;margin-bottom:12px;letter-spacing:-.5px}
 .thankyou-hero p{color:rgba(255,255,255,.55);font-size:15px;line-height:1.6}
@@ -124,6 +200,10 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
 .step-text strong{color:var(--navy)}
 .thankyou-footer{text-align:center;margin-top:24px;font-size:13px;color:var(--subtle)}
 .thankyou-footer a{color:var(--primary);font-weight:600;text-decoration:none}
+/* Color check panel (in form) */
+.color-check-panel{background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:14px;padding:16px;display:none}
+.color-check-header{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin-bottom:12px}
+.color-check-results{display:flex;flex-direction:column;gap:8px}
 </style>
 </head>
 <body>
@@ -132,6 +212,14 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
 <div id="thankYouScreen">
   <div class="thankyou-hero">
     <div class="thankyou-hero-inner">
+      <div class="thankyou-logo">
+        <svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="white" opacity="0.2"/>
+          <text x="9" y="21" font-size="16">🐄</text>
+          <text x="40" y="13" font-family="'Rethink Sans',sans-serif" font-weight="800" font-size="10" fill="white" opacity="0.7">Sponsor a</text>
+          <text x="40" y="26" font-family="'Rethink Sans',sans-serif" font-weight="800" font-size="10" fill="white">Purpose</text>
+        </svg>
+      </div>
       <div class="thankyou-icon">🎉</div>
       <h2>We got it — thank you!</h2>
       <p>Your intake form has been submitted. Our team will review everything and be in touch within 1–2 business days.</p>
@@ -141,27 +229,16 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
     <div class="thankyou-card">
       <h3>What happens next?</h3>
       <div class="thankyou-steps">
-        <div class="thankyou-step">
-          <div class="step-num">1</div>
-          <div class="step-text"><strong>Our team reviews your intake</strong> and generates a custom design system — colors, fonts, layout, and content strategy — tailored to your organization.</div>
-        </div>
-        <div class="thankyou-step">
-          <div class="step-num">2</div>
-          <div class="step-text"><strong>We'll send you a design brief</strong> covering your full brand direction before we build anything.</div>
-        </div>
-        <div class="thankyou-step">
-          <div class="step-num">3</div>
-          <div class="step-text"><strong>We'll schedule a quick call</strong> to walk through the direction together and get your approval.</div>
-        </div>
+        <div class="thankyou-step"><div class="step-num">1</div><div class="step-text"><strong>Our team reviews your intake</strong> and generates a custom design system — colors, fonts, layout, and content strategy — tailored to your organization.</div></div>
+        <div class="thankyou-step"><div class="step-num">2</div><div class="step-text"><strong>We'll send you a design brief</strong> covering your full brand direction before we build anything.</div></div>
+        <div class="thankyou-step"><div class="step-num">3</div><div class="step-text"><strong>We'll schedule a quick call</strong> to walk through the direction together and get your approval.</div></div>
       </div>
     </div>
     <div class="thankyou-card">
       <h3>Questions in the meantime?</h3>
-      <p>Email us at <a href="mailto:hello@sponsorapurpose.org">hello@sponsorapurpose.org</a> or visit <a href="https://sponsorapurpose.org" target="_blank">sponsorapurpose.org</a>.</p>
+      <p>Email us at <a href="/cdn-cgi/l/email-protection#563e333a3a391625263938253924372623242639253378392431"><span class="__cf_email__" data-cfemail="29414c454546695a5946475a465b48595c5b59465a4c07465b4e">[email&#160;protected]</span></a> or visit <a href="https://sponsorapurpose.org" target="_blank">sponsorapurpose.org</a>.</p>
     </div>
-    <div class="thankyou-footer">
-      Powered by <a href="https://sponsorapurpose.org" target="_blank">SponsorAPurpose</a> · Nonprofit web design &amp; consulting
-    </div>
+    <div class="thankyou-footer">Powered by <a href="https://sponsorapurpose.org" target="_blank">SponsorAPurpose</a> · Nonprofit web design &amp; consulting</div>
   </div>
 </div>
 
@@ -169,398 +246,417 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
 <div id="mainForm">
   <div class="header">
     <div class="header-inner">
-      <div class="header-logo">
-        <div class="logo-mark">SP</div>
-        <div>
-          <div class="logo-text">SponsorAPurpose</div>
-          <div class="logo-sub">Nonprofit Web Design &amp; Consulting</div>
+      <div class="header-top">
+        <!-- SAP Logo -->
+        <div class="header-logo">
+          <div class="logo-mark">🐄</div>
+          <div>
+            <div class="logo-text">Sponsor a Purpose</div>
+            <div class="logo-sub">Nonprofit Web Design &amp; Consulting</div>
+          </div>
         </div>
+        <div class="header-eyebrow">Website Intake Form</div>
       </div>
-      <div class="header-eyebrow">Website Intake Form</div>
-      <h1>Let's build your <span>nonprofit website</span> the right way.</h1>
-      <p class="header-desc">Share your organization's details, brand, and goals. Takes about 10 minutes — goes directly to our design team.</p>
-      <div class="progress-bar-wrap">
-        <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
-        <div class="progress-pct" id="progressPct">0%</div>
+      <div class="header-bottom">
+        <div>
+          <h1>Let's build your <span>nonprofit website</span> the right way.</h1>
+          <p class="header-desc">Share your organization's details, brand, and goals. Takes about 10 minutes — goes directly to our design team.</p>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="progress-pct" id="progressPct">0%</div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="form-body">
+  <div class="form-wrap">
 
-    <!-- Netlify hidden form -->
-    <form name="nonprofit-intake" id="netlifyForm" style="display:none">
-      <input type="hidden" name="form-name" value="nonprofit-intake">
-      <input type="hidden" name="client_id" id="n_client_id">
-      <input type="hidden" name="org_name" id="n_org_name">
-      <input type="hidden" name="np_type" id="n_np_type">
-      <input type="hidden" name="mission" id="n_mission">
-      <input type="hidden" name="city" id="n_city">
-      <input type="hidden" name="state" id="n_state">
-      <input type="hidden" name="primary_color" id="n_primary_color">
-      <input type="hidden" name="secondary_color" id="n_secondary_color">
-      <input type="hidden" name="accent_colors" id="n_accent_colors">
-      <input type="hidden" name="logo_provided" id="n_logo_provided">
-      <input type="hidden" name="font_prefs" id="n_font_prefs">
-      <input type="hidden" name="primary_cta" id="n_primary_cta">
-      <input type="hidden" name="secondary_ctas" id="n_secondary_ctas">
-      <input type="hidden" name="pages" id="n_pages">
-      <input type="hidden" name="functional" id="n_functional">
-      <input type="hidden" name="collects_forms" id="n_collects_forms">
-      <input type="hidden" name="tone" id="n_tone">
-      <input type="hidden" name="sq_audience" id="n_sq_audience">
-      <input type="hidden" name="sq_goal" id="n_sq_goal">
-      <input type="hidden" name="sq_integrations" id="n_sq_integrations">
-      <input type="hidden" name="inspiration_sites" id="n_inspiration_sites">
-      <input type="hidden" name="extra_notes" id="n_extra_notes">
-      <input type="hidden" name="contact_name" id="n_contact_name">
-      <input type="hidden" name="contact_email" id="n_contact_email">
-      <input type="hidden" name="contact_phone" id="n_contact_phone">
-    </form>
+    <!-- LEFT: FORM -->
+    <div class="form-col">
 
-    <!-- 1. Organization -->
-    <div class="section-card">
-      <div class="section-header"><span class="section-icon">🏢</span><span class="section-title">Your Organization</span></div>
-      <div class="section-body">
-        <div class="field-group">
-          <label>Organization Name <span class="req">*</span></label>
-          <input type="text" id="org_name" placeholder="e.g. Flathead Animal Shelter" oninput="updateProgress()">
-        </div>
-        <div class="field-group">
-          <label>Organization Type <span class="req">*</span></label>
-          <div class="type-grid" id="typeGrid"></div>
-        </div>
-        <div class="field-group">
-          <label>Mission Statement <span class="req">*</span><span class="hint">— What do you do and who do you serve?</span></label>
-          <textarea id="mission" placeholder="In a few sentences, describe your mission and the community you serve…" oninput="updateProgress()"></textarea>
-        </div>
-        <div class="field-row">
-          <div class="field-group half">
-            <label>City</label>
-            <input type="text" id="city" placeholder="e.g. Kalispell">
-          </div>
-          <div class="field-group half">
-            <label>State</label>
-            <select id="state">
-              <option value="">Select…</option>
-              <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
+      <!-- Hidden Netlify/Web3Forms fields -->
+      <form name="nonprofit-intake" id="netlifyForm" style="display:none">
+        <input type="hidden" name="form-name" value="nonprofit-intake">
+        <input type="hidden" name="client_id" id="n_client_id">
+        <input type="hidden" name="org_name" id="n_org_name">
+        <input type="hidden" name="np_type" id="n_np_type">
+        <input type="hidden" name="mission" id="n_mission">
+        <input type="hidden" name="city" id="n_city">
+        <input type="hidden" name="state" id="n_state">
+        <input type="hidden" name="primary_color" id="n_primary_color">
+        <input type="hidden" name="secondary_color" id="n_secondary_color">
+        <input type="hidden" name="accent_colors" id="n_accent_colors">
+        <input type="hidden" name="logo_provided" id="n_logo_provided">
+        <input type="hidden" name="font_prefs" id="n_font_prefs">
+        <input type="hidden" name="primary_cta" id="n_primary_cta">
+        <input type="hidden" name="secondary_ctas" id="n_secondary_ctas">
+        <input type="hidden" name="pages" id="n_pages">
+        <input type="hidden" name="functional" id="n_functional">
+        <input type="hidden" name="collects_forms" id="n_collects_forms">
+        <input type="hidden" name="tone" id="n_tone">
+        <input type="hidden" name="sq_audience" id="n_sq_audience">
+        <input type="hidden" name="sq_goal" id="n_sq_goal">
+        <input type="hidden" name="sq_integrations" id="n_sq_integrations">
+        <input type="hidden" name="inspiration_sites" id="n_inspiration_sites">
+        <input type="hidden" name="extra_notes" id="n_extra_notes">
+        <input type="hidden" name="contact_name" id="n_contact_name">
+        <input type="hidden" name="contact_email" id="n_contact_email">
+        <input type="hidden" name="contact_phone" id="n_contact_phone">
+      </form>
 
-    <!-- 2. Brand Colors -->
-    <div class="section-card">
-      <div class="section-header"><span class="section-icon">🎨</span><span class="section-title">Brand Colors</span></div>
-      <div class="section-body">
-        <div class="field-group">
-          <label>Do you have existing brand colors?</label>
-          <div class="toggle-group">
-            <button type="button" class="toggle-btn active" id="hasBrandYes" onclick="toggleBrandColors(true)">Yes, we have colors</button>
-            <button type="button" class="toggle-btn" id="hasBrandNo" onclick="toggleBrandColors(false)">No — suggest some for us</button>
-          </div>
-        </div>
-        <div id="brandColorFields">
-          <div class="field-row">
-            <div class="field-group half">
-              <label>Primary Color</label>
-              <div class="color-row">
-                <input type="color" id="primary_color" value="#0083C6" oninput="syncColorHex('primary_color','primary_hex');updateColorScale();runColorChecks();updateProgress()">
-                <input type="text" id="primary_hex" value="#0083C6" placeholder="#0083C6" oninput="syncHexColor('primary_hex','primary_color');updateColorScale();runColorChecks()" style="font-family:monospace">
-              </div>
-              <div class="color-preview-row" id="primaryScale"></div>
-            </div>
-            <div class="field-group half">
-              <label>Secondary Color</label>
-              <div class="color-row">
-                <input type="color" id="secondary_color" value="#3DAA69" oninput="syncColorHex('secondary_color','secondary_hex');runColorChecks();updateProgress()">
-                <input type="text" id="secondary_hex" value="#3DAA69" placeholder="#3DAA69" oninput="syncHexColor('secondary_hex','secondary_color');runColorChecks()" style="font-family:monospace">
-              </div>
-            </div>
-          </div>
-          <!-- COLOR READABILITY PANEL -->
-          <div id="colorCheckPanel" style="background:#f8fafc;border:1.5px solid #e2e8f0;border-radius:14px;padding:16px;display:none">
-            <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin-bottom:12px">Color Readability &amp; Harmony Check</div>
-            <div id="colorCheckResults" style="display:flex;flex-direction:column;gap:8px"></div>
+      <!-- 1. Organization -->
+      <div class="section-card">
+        <div class="section-header"><span class="section-icon">🏢</span><span class="section-title">Your Organization</span></div>
+        <div class="section-body">
+          <div class="field-group">
+            <label>Organization Name <span class="req">*</span></label>
+            <input type="text" id="org_name" placeholder="e.g. Flathead Animal Shelter" oninput="updateProgress();updatePreview()">
           </div>
           <div class="field-group">
-            <label>Accent Colors <span class="hint">Optional extra brand colors</span></label>
-            <div class="accent-list" id="accentList"></div>
-            <button type="button" class="add-accent-btn" onclick="addAccentColor()">+ Add accent color</button>
+            <label>Organization Type <span class="req">*</span></label>
+            <div class="type-grid" id="typeGrid"></div>
           </div>
-        </div>
-        <div class="field-group">
-          <label>Do you have a logo?</label>
-          <div class="toggle-group">
-            <button type="button" class="toggle-btn active" id="logoYes" onclick="setLogo('yes')">Yes, ready to share</button>
-            <button type="button" class="toggle-btn" id="logoMaybe" onclick="setLogo('in-progress')">In progress</button>
-            <button type="button" class="toggle-btn" id="logoNo" onclick="setLogo('no')">No logo yet</button>
+          <div class="field-group">
+            <label>Mission Statement <span class="req">*</span><span class="hint">— What do you do and who do you serve?</span></label>
+            <textarea id="mission" placeholder="In a few sentences, describe your mission and the community you serve…" oninput="updateProgress()"></textarea>
+          </div>
+          <div class="field-row">
+            <div class="field-group half">
+              <label>City</label>
+              <input type="text" id="city" placeholder="e.g. Kalispell">
+            </div>
+            <div class="field-group half">
+              <label>State</label>
+              <select id="state">
+                <option value="">Select…</option>
+                <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- 3. Typography -->
-    <div class="section-card">
-      <div class="section-header"><span class="section-icon">✏️</span><span class="section-title">Typography</span></div>
-      <div class="section-body">
-
-        <!-- FONT SLOT: Heading -->
-        <div class="font-slot" id="slot_heading">
-          <div class="font-slot-header">
-            <div class="font-slot-label">
-              <div class="font-slot-dot" style="background:#0083C6"></div>
-              <div>
-                <div class="font-slot-title">Heading Font</div>
-                <div class="font-slot-sub">Used for page titles, section headers, and CTAs</div>
+      <!-- 2. Brand Colors -->
+      <div class="section-card">
+        <div class="section-header"><span class="section-icon">🎨</span><span class="section-title">Brand Colors</span></div>
+        <div class="section-body">
+          <div class="field-group">
+            <label>Do you have existing brand colors?</label>
+            <div class="toggle-group">
+              <button type="button" class="toggle-btn active" id="hasBrandYes" onclick="toggleBrandColors(true)">Yes, we have colors</button>
+              <button type="button" class="toggle-btn" id="hasBrandNo" onclick="toggleBrandColors(false)">No — suggest some for us</button>
+            </div>
+          </div>
+          <div id="brandColorFields">
+            <div class="field-row">
+              <div class="field-group half">
+                <label>Primary Color</label>
+                <div class="color-row">
+                  <input type="color" id="primary_color" value="#0083C6" oninput="syncColorHex('primary_color','primary_hex');updateColorScale();runColorChecks();updatePreview();updateProgress()">
+                  <input type="text" id="primary_hex" value="#0083C6" placeholder="#0083C6" oninput="syncHexColor('primary_hex','primary_color');updateColorScale();runColorChecks();updatePreview()" style="font-family:monospace">
+                </div>
+                <div class="color-preview-row" id="primaryScale"></div>
+              </div>
+              <div class="field-group half">
+                <label>Secondary Color</label>
+                <div class="color-row">
+                  <input type="color" id="secondary_color" value="#3DAA69" oninput="syncColorHex('secondary_color','secondary_hex');runColorChecks();updatePreview();updateProgress()">
+                  <input type="text" id="secondary_hex" value="#3DAA69" placeholder="#3DAA69" oninput="syncHexColor('secondary_hex','secondary_color');runColorChecks();updatePreview()" style="font-family:monospace">
+                </div>
               </div>
             </div>
-            <div class="font-slot-selected" id="headingSelected">None selected</div>
-          </div>
-          <div class="font-grid" id="fontGrid_heading"></div>
-        </div>
-
-        <!-- FONT SLOT: Body -->
-        <div class="font-slot" id="slot_body">
-          <div class="font-slot-header">
-            <div class="font-slot-label">
-              <div class="font-slot-dot" style="background:#3DAA69"></div>
-              <div>
-                <div class="font-slot-title">Body Font</div>
-                <div class="font-slot-sub">Used for paragraphs, descriptions, and general content</div>
-              </div>
+            <!-- COLOR CHECK PANEL (in-form) -->
+            <div class="color-check-panel" id="colorCheckPanel">
+              <div class="color-check-header">Color Readability &amp; Harmony Check</div>
+              <div class="color-check-results" id="colorCheckResults"></div>
             </div>
-            <div class="font-slot-selected" id="bodySelected">None selected</div>
-          </div>
-          <div class="font-grid" id="fontGrid_body"></div>
-        </div>
-
-        <!-- FONT SLOT: Accent -->
-        <div class="font-slot" id="slot_accent">
-          <div class="font-slot-header">
-            <div class="font-slot-label">
-              <div class="font-slot-dot" style="background:#7c3aed"></div>
-              <div>
-                <div class="font-slot-title">Accent Font <span style="font-weight:400;color:#94a3b8;font-size:11px">Optional</span></div>
-                <div class="font-slot-sub">Used for pull quotes, labels, and special callouts</div>
-              </div>
-            </div>
-            <div class="font-slot-selected" id="accentSelected">None selected</div>
-          </div>
-          <div class="font-grid" id="fontGrid_accent"></div>
-        </div>
-
-        <!-- LIVE PREVIEW -->
-        <div id="fontPreviewPanel" style="display:none">
-          <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin-bottom:12px">Live Preview — Nonprofit Hero Section</div>
-          <div id="fontPreviewCard" style="background:white;border:1.5px solid #e2e8f0;border-radius:16px;overflow:hidden">
-            <!-- Hero mockup -->
-            <div id="previewHero" style="background:linear-gradient(135deg,#0a1628,#163872);padding:28px 24px">
-              <div id="previewEyebrow" style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#7dd3fc;margin-bottom:10px">Our Mission</div>
-              <div id="previewHeading" style="font-size:26px;font-weight:800;color:white;line-height:1.2;margin-bottom:10px">Every animal deserves a loving home.</div>
-              <div id="previewBody" style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:16px">We rescue, rehabilitate, and rehome animals in need across the Flathead Valley. Join us in making a difference for the animals who need it most.</div>
-              <div id="previewCta" style="display:inline-block;background:#3DAA69;color:white;border-radius:100px;padding:9px 20px;font-size:13px;font-weight:700">Adopt Today →</div>
-            </div>
-            <!-- Card mockup -->
-            <div style="padding:20px 24px;border-top:1px solid #f1f5f9">
-              <div id="previewCardTitle" style="font-size:15px;font-weight:700;color:#0a1628;margin-bottom:6px">How Your Donation Helps</div>
-              <div id="previewCardBody" style="font-size:12px;color:#64748b;line-height:1.6">Every dollar goes directly toward food, medical care, and shelter for animals in our program. Over 1,200 animals found homes last year thanks to donors like you.</div>
-              <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-                <div id="previewStat1" style="background:#f0f6fb;border-radius:10px;padding:8px 14px;font-size:11px;font-weight:700;color:#0083C6">1,200+ Adoptions</div>
-                <div id="previewStat2" style="background:#f0faf4;border-radius:10px;padding:8px 14px;font-size:11px;font-weight:700;color:#3DAA69">$0 Platform Fees</div>
-                <div id="previewStat3" style="background:#faf5ff;border-radius:10px;padding:8px 14px;font-size:11px;font-weight:700;color:#7c3aed">Free Forever</div>
-              </div>
+            <div class="field-group" style="margin-top:14px">
+              <label>Accent Colors <span class="hint">Optional extra brand colors</span></label>
+              <div class="accent-list" id="accentList"></div>
+              <button type="button" class="add-accent-btn" onclick="addAccentColor()">+ Add accent color</button>
             </div>
           </div>
-          <!-- Font legend -->
-          <div id="fontLegend" style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap"></div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- 4. CTAs -->
-    <div class="section-card">
-      <div class="section-header"><span class="section-icon">🎯</span><span class="section-title">Calls to Action</span></div>
-      <div class="section-body">
-        <div class="field-group">
-          <label>Primary CTA <span class="req">*</span><span class="hint">— The #1 thing visitors should do</span></label>
-          <div class="chip-group" id="primaryCtaGroup"></div>
-        </div>
-        <div class="field-group">
-          <label>Secondary CTAs <span class="hint">Other actions visitors can take</span></label>
-          <div class="chip-group" id="secondaryCtaGroup"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. Pages -->
-    <div class="section-card">
-      <div class="section-header"><span class="section-icon">📄</span><span class="section-title">Pages</span></div>
-      <div class="section-body">
-        <div class="field-group">
-          <label>Which pages do you need? <span class="hint">Select all that apply</span></label>
-          <div class="chip-group" id="pagesGroup"></div>
-        </div>
-        <div class="field-group">
-          <label>Any custom pages not listed above?</label>
-          <input type="text" id="custom_pages" placeholder="e.g. Pet Sponsorship, Rescue Transport, Memorial Wall">
-        </div>
-      </div>
-    </div>
-
-    <!-- 6. Features -->
-    <div class="section-card">
-      <div class="section-header"><span class="section-icon">⚙️</span><span class="section-title">Features &amp; Data Collection</span></div>
-      <div class="section-body">
-        <div class="field-group">
-          <label>Features Needed <span class="hint">Select all that apply</span></label>
-          <div class="chip-group" id="functionalGroup"></div>
-        </div>
-        <div class="field-group">
-          <label>Do you collect any of these from the public?</label>
-          <div class="chip-group" id="formsGroup"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 7. Strategy -->
-    <div class="section-card">
-      <div class="section-header"><span class="section-icon">💡</span><span class="section-title">Strategy &amp; Audience</span></div>
-      <div class="section-body">
-        <div class="field-group">
-          <label>Tone / Personality <span class="req">*</span></label>
-          <div class="chip-group" id="toneGroup"></div>
-        </div>
-        <div class="field-group">
-          <label>Target Audience <span class="req">*</span></label>
-          <textarea id="sq_audience" placeholder="e.g. Families looking to adopt pets, local volunteers aged 18–40, businesses seeking sponsorship…" oninput="updateProgress()"></textarea>
-        </div>
-        <div class="field-group">
-          <label>Primary Website Goal <span class="req">*</span></label>
-          <input type="text" id="sq_goal" placeholder="e.g. Increase monthly donations, grow volunteer base, drive adoptions" oninput="updateProgress()">
-        </div>
-        <div class="field-group">
-          <label>Third-party Integrations <span class="hint">Tools you already use</span></label>
-          <input type="text" id="sq_integrations" placeholder="e.g. Salesforce, Mailchimp, PayPal, Bloomerang">
-        </div>
-        <div class="field-group">
-          <label>Websites You Love <span class="hint">For inspiration — paste URLs, one per line</span></label>
-          <textarea id="inspiration_sites" placeholder="https://example.org&#10;https://anothergreatsite.org" style="min-height:70px"></textarea>
-        </div>
-        <div class="field-group">
-          <label>Anything Else We Should Know?</label>
-          <textarea id="extra_notes" placeholder="Special requirements, timeline, existing content, things to avoid…"></textarea>
-        </div>
-      </div>
-    </div>
-
-    <!-- 8. Contact -->
-    <div class="section-card">
-      <div class="section-header"><span class="section-icon">👤</span><span class="section-title">Your Contact Info</span></div>
-      <div class="section-body">
-        <div class="field-row">
-          <div class="field-group half">
-            <label>Your Name <span class="req">*</span></label>
-            <input type="text" id="contact_name" placeholder="First and last name" oninput="updateProgress()">
-          </div>
-          <div class="field-group half">
-            <label>Email <span class="req">*</span></label>
-            <input type="email" id="contact_email" placeholder="you@organization.org" oninput="updateProgress()">
+          <div class="field-group">
+            <label>Do you have a logo?</label>
+            <div class="toggle-group">
+              <button type="button" class="toggle-btn active" id="logoYes" onclick="setLogo('yes')">Yes, ready to share</button>
+              <button type="button" class="toggle-btn" id="logoMaybe" onclick="setLogo('in-progress')">In progress</button>
+              <button type="button" class="toggle-btn" id="logoNo" onclick="setLogo('no')">No logo yet</button>
+            </div>
           </div>
         </div>
-        <div class="field-group">
-          <label>Phone <span class="hint">Optional</span></label>
-          <input type="tel" id="contact_phone" placeholder="(555) 000-0000">
+      </div>
+
+      <!-- 3. Typography -->
+      <div class="section-card">
+        <div class="section-header"><span class="section-icon">✏️</span><span class="section-title">Typography</span></div>
+        <div class="section-body">
+          <div class="font-slot" id="slot_heading">
+            <div class="font-slot-header">
+              <div class="font-slot-label"><div class="font-slot-dot" style="background:#0083C6"></div><div><div class="font-slot-title">Heading Font</div><div class="font-slot-sub">Titles, section headers, and CTAs</div></div></div>
+              <div class="font-slot-selected empty" id="headingSelected">None selected</div>
+            </div>
+            <div class="font-grid" id="fontGrid_heading"></div>
+          </div>
+          <div class="font-slot" id="slot_body">
+            <div class="font-slot-header">
+              <div class="font-slot-label"><div class="font-slot-dot" style="background:#3DAA69"></div><div><div class="font-slot-title">Body Font</div><div class="font-slot-sub">Paragraphs and general content</div></div></div>
+              <div class="font-slot-selected empty" id="bodySelected">None selected</div>
+            </div>
+            <div class="font-grid" id="fontGrid_body"></div>
+          </div>
+          <div class="font-slot" id="slot_accent">
+            <div class="font-slot-header">
+              <div class="font-slot-label"><div class="font-slot-dot" style="background:#7c3aed"></div><div><div class="font-slot-title">Accent Font <span style="font-weight:400;color:#94a3b8;font-size:11px">Optional</span></div><div class="font-slot-sub">Pull quotes, labels, callouts</div></div></div>
+              <div class="font-slot-selected empty" id="accentSelected">None selected</div>
+            </div>
+            <div class="font-grid" id="fontGrid_accent"></div>
+          </div>
         </div>
+      </div>
+
+      <!-- 4. CTAs -->
+      <div class="section-card">
+        <div class="section-header"><span class="section-icon">🎯</span><span class="section-title">Calls to Action</span></div>
+        <div class="section-body">
+          <div class="field-group">
+            <label>Primary CTA <span class="req">*</span><span class="hint">— The #1 thing visitors should do</span></label>
+            <div class="chip-group" id="primaryCtaGroup"></div>
+          </div>
+          <div class="field-group">
+            <label>Secondary CTAs <span class="hint">Other actions visitors can take</span></label>
+            <div class="chip-group" id="secondaryCtaGroup"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Pages -->
+      <div class="section-card">
+        <div class="section-header"><span class="section-icon">📄</span><span class="section-title">Pages</span></div>
+        <div class="section-body">
+          <div class="field-group">
+            <label>Which pages do you need? <span class="hint">Select all that apply</span></label>
+            <div class="chip-group" id="pagesGroup"></div>
+          </div>
+          <div class="field-group">
+            <label>Any custom pages not listed above?</label>
+            <input type="text" id="custom_pages" placeholder="e.g. Pet Sponsorship, Rescue Transport, Memorial Wall">
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Features -->
+      <div class="section-card">
+        <div class="section-header"><span class="section-icon">⚙️</span><span class="section-title">Features &amp; Data Collection</span></div>
+        <div class="section-body">
+          <div class="field-group">
+            <label>Features Needed <span class="hint">Select all that apply</span></label>
+            <div class="chip-group" id="functionalGroup"></div>
+          </div>
+          <div class="field-group">
+            <label>Do you collect any of these from the public?</label>
+            <div class="chip-group" id="formsGroup"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. Strategy -->
+      <div class="section-card">
+        <div class="section-header"><span class="section-icon">💡</span><span class="section-title">Strategy &amp; Audience</span></div>
+        <div class="section-body">
+          <div class="field-group">
+            <label>Tone / Personality <span class="req">*</span></label>
+            <div class="chip-group" id="toneGroup"></div>
+          </div>
+          <div class="field-group">
+            <label>Target Audience <span class="req">*</span></label>
+            <textarea id="sq_audience" placeholder="e.g. Families looking to adopt pets, local volunteers aged 18–40, businesses seeking sponsorship…" oninput="updateProgress()"></textarea>
+          </div>
+          <div class="field-group">
+            <label>Primary Website Goal <span class="req">*</span></label>
+            <input type="text" id="sq_goal" placeholder="e.g. Increase monthly donations, grow volunteer base, drive adoptions" oninput="updateProgress()">
+          </div>
+          <div class="field-group">
+            <label>Third-party Integrations <span class="hint">Tools you already use</span></label>
+            <input type="text" id="sq_integrations" placeholder="e.g. Salesforce, Mailchimp, PayPal, Bloomerang">
+          </div>
+          <div class="field-group">
+            <label>Websites You Love <span class="hint">For inspiration — paste URLs, one per line</span></label>
+            <textarea id="inspiration_sites" placeholder="https://example.org&#10;https://anothergreatsite.org" style="min-height:70px"></textarea>
+          </div>
+          <div class="field-group">
+            <label>Anything Else We Should Know?</label>
+            <textarea id="extra_notes" placeholder="Special requirements, timeline, existing content, things to avoid…"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Contact -->
+      <div class="section-card">
+        <div class="section-header"><span class="section-icon">👤</span><span class="section-title">Your Contact Info</span></div>
+        <div class="section-body">
+          <div class="field-row">
+            <div class="field-group half">
+              <label>Your Name <span class="req">*</span></label>
+              <input type="text" id="contact_name" placeholder="First and last name" oninput="updateProgress()">
+            </div>
+            <div class="field-group half">
+              <label>Email <span class="req">*</span></label>
+              <input type="email" id="contact_email" placeholder="you@organization.org" oninput="updateProgress()">
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Phone <span class="hint">Optional</span></label>
+            <input type="tel" id="contact_phone" placeholder="(555) 000-0000">
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="submit-section">
+        <button type="button" class="submit-btn" id="submitBtn" onclick="handleSubmit()">Submit Intake Form →</button>
+        <p class="submit-note">Goes directly to the SponsorAPurpose design team. We'll be in touch within 1–2 business days.</p>
+      </div>
+
+    </div><!-- /form-col -->
+
+    <!-- RIGHT: STICKY PREVIEW PANEL -->
+    <div class="preview-panel">
+      <div class="preview-box">
+        <div class="preview-label">Live Preview</div>
+
+        <!-- Mock website — 4 sections -->
+        <div class="lp-mock">
+
+          <!-- SECTION 1: HERO -->
+          <div class="lp-nav" id="lp_nav" style="background:linear-gradient(135deg,#0083C6ee,#0083C6bb)">
+            <div class="lp-nav-brand">
+              <div class="lp-nav-icon" id="lp_nav_icon">🐄</div>
+              <span class="lp-nav-name" id="lp_orgname">Your Organization</span>
+            </div>
+            <div class="lp-nav-links">
+              <span class="lp-nav-link">About</span>
+              <span class="lp-nav-link">Programs</span>
+              <div class="lp-nav-btn" id="lp_nav_btn">Donate</div>
+            </div>
+          </div>
+          <div class="lp-hero" id="lp_hero" style="background:linear-gradient(145deg,#0083C6dd,#0083C699)">
+            <div class="lp-eyebrow" id="lp_eyebrow">🌟 Our Mission</div>
+            <div class="lp-headline" id="lp_headline">Making a difference in every community.</div>
+            <div class="lp-body" id="lp_body">We're dedicated to creating lasting change through compassion, community, and direct action for those who need it most.</div>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+              <div class="lp-cta" id="lp_cta" style="background:#3DAA69;color:white">Get Involved →</div>
+              <div class="lp-cta-ghost">Learn More</div>
+            </div>
+          </div>
+
+          <!-- SECTION 2: IMPACT BAR -->
+          <div class="lp-impact-bar" id="lp_impact_bar" style="border-top-color:#3DAA69">
+            <div class="lp-impact-stat">
+              <div class="lp-impact-val" id="lp_imp1">—</div>
+              <div class="lp-impact-lab" id="lp_imp1_lab">People Served</div>
+            </div>
+            <div class="lp-impact-divider"></div>
+            <div class="lp-impact-stat">
+              <div class="lp-impact-val" id="lp_imp2">—</div>
+              <div class="lp-impact-lab" id="lp_imp2_lab">Raised Annually</div>
+            </div>
+            <div class="lp-impact-divider"></div>
+            <div class="lp-impact-stat">
+              <div class="lp-impact-val" id="lp_imp3">—</div>
+              <div class="lp-impact-lab" id="lp_imp3_lab">Active Donors</div>
+            </div>
+          </div>
+
+          <!-- SECTION 3: PROGRAM CARDS -->
+          <div class="lp-programs" id="lp_programs">
+            <div class="lp-prog-header">
+              <div class="lp-prog-eyebrow" id="lp_prog_eyebrow">Our Programs</div>
+              <div class="lp-prog-headline" id="lp_prog_headline">What we do</div>
+            </div>
+            <div class="lp-prog-grid" id="lp_prog_grid">
+              <!-- injected by JS -->
+            </div>
+          </div>
+
+          <!-- SECTION 4: DONATION CARD -->
+          <div class="lp-donate-section" id="lp_donate_section" style="background:linear-gradient(145deg,#0083C6f2,#3DAA69cc)">
+            <div class="lp-donate-label" id="lp_donate_label">Support Our Mission</div>
+            <div class="lp-amount-row">
+              <div class="lp-amount-chip" id="lp_amt1">$25</div>
+              <div class="lp-amount-chip" id="lp_amt2">$50</div>
+              <div class="lp-amount-chip lp-amount-active" id="lp_amt3">$100</div>
+            </div>
+            <div class="lp-donate-btn" id="lp_donate_btn" style="background:white;color:#0083C6">Donate Now →</div>
+            <div class="lp-donate-sub">🔒 Secure · No platform fees · IRS receipt auto-emailed</div>
+          </div>
+
+          <!-- SECTION 5: FOOTER -->
+          <div class="lp-footer" id="lp_footer" style="background:linear-gradient(135deg,#0083C6ee,#0083C6bb)">
+            <div class="lp-footer-brand">
+              <span class="lp-footer-icon" id="lp_footer_emoji">🐄</span>
+              <span class="lp-footer-name" id="lp_footer_name">Your Organization</span>
+            </div>
+            <div class="lp-footer-tagline">Your Purpose is Our Passion.</div>
+            <div class="lp-footer-cta" id="lp_footer_cta" style="background:#3DAA69;color:white">Donate Today</div>
+          </div>
+
+        </div>
+
+        <!-- Contrast checks -->
+        <div class="contrast-grid" id="contrastGrid"></div>
+
+        <!-- Harmony -->
+        <div id="harmonyRow" style="display:none" class="harmony-row">
+          <span style="font-size:16px">🎨</span>
+          <div>
+            <div style="font-size:11px;font-weight:800;color:#334155" id="harmonyName"></div>
+            <div style="font-size:10px;color:#64748b" id="harmonyDesc"></div>
+          </div>
+          <span style="margin-left:auto;font-size:14px" id="harmonyIcon"></span>
+        </div>
+
+        <!-- Font legend -->
+        <div class="font-legend" id="fontLegendPanel"></div>
       </div>
     </div>
 
-    <!-- Submit -->
-    <div class="submit-section">
-      <button type="button" class="submit-btn" id="submitBtn" onclick="handleSubmit()">Submit Intake Form →</button>
-      <p class="submit-note">Goes directly to the SponsorAPurpose design team. We'll be in touch within 1–2 business days.</p>
-    </div>
+  </div><!-- /form-wrap -->
+</div><!-- /mainForm -->
 
-  </div>
-</div>
-
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const NP_TYPES=[
-  {name:'Animal Welfare',emoji:'🐾',color:'#0083C6'},
-  {name:'Human Services',emoji:'🤝',color:'#7C3AED'},
-  {name:'Faith-Based',emoji:'✝️',color:'#B45309'},
-  {name:'Arts & Culture',emoji:'🎭',color:'#9333EA'},
-  {name:'Education',emoji:'📚',color:'#0891B2'},
-  {name:'Health & Medical',emoji:'🏥',color:'#059669'},
-  {name:'Environmental',emoji:'🌿',color:'#16A34A'},
-  {name:'Community Development',emoji:'🏘️',color:'#EA580C'},
-  {name:'Advocacy / Policy',emoji:'📣',color:'#DC2626'},
-  {name:'Youth & Children',emoji:'🧒',color:'#F59E0B'},
-  {name:'Veterans & Military',emoji:'🎖️',color:'#1D4ED8'},
-  {name:'Homeless & Housing',emoji:'🏠',color:'#0F766E'},
-  {name:'Food Security',emoji:'🥗',color:'#65A30D'},
-  {name:'International Aid',emoji:'🌍',color:'#0284C7'},
-  {name:'Disaster Relief',emoji:'🆘',color:'#DC2626'},
-  {name:'Legal Aid',emoji:'⚖️',color:'#4338CA'},
-  {name:'Immigration & Refugee',emoji:'🤲',color:'#0891B2'},
-  {name:'LGBTQ+',emoji:'🏳️‍🌈',color:'#7C3AED'},
-  {name:'Racial Justice',emoji:'✊',color:'#B45309'},
-  {name:'Disability Services',emoji:'♿',color:'#059669'},
-  {name:'Mental Health',emoji:'🧠',color:'#8B5CF6'},
-  {name:'Substance Recovery',emoji:'💙',color:'#2563EB'},
-  {name:'Sports & Recreation',emoji:'⚽',color:'#16A34A'},
-  {name:'Library & Literacy',emoji:'📖',color:'#92400E'},
-  {name:'Historical Preservation',emoji:'🏛️',color:'#78716C'},
-  {name:'Science & Research',emoji:'🔬',color:'#0E7490'},
-  {name:'Technology Access',emoji:'💻',color:'#1D4ED8'},
-  {name:'Economic Development',emoji:'📈',color:'#047857'},
-  {name:'Civic Engagement',emoji:'🗳️',color:'#1E40AF'},
-  {name:'Foundation / Grantmaking',emoji:'🏦',color:'#7C3AED'},
+  {name:'Animal Welfare',emoji:'🐾',color:'#0083C6'},{name:'Human Services',emoji:'🤝',color:'#7C3AED'},
+  {name:'Faith-Based',emoji:'✝️',color:'#B45309'},{name:'Arts & Culture',emoji:'🎭',color:'#9333EA'},
+  {name:'Education',emoji:'📚',color:'#0891B2'},{name:'Health & Medical',emoji:'🏥',color:'#059669'},
+  {name:'Environmental',emoji:'🌿',color:'#16A34A'},{name:'Community Development',emoji:'🏘️',color:'#EA580C'},
+  {name:'Advocacy / Policy',emoji:'📣',color:'#DC2626'},{name:'Youth & Children',emoji:'🧒',color:'#F59E0B'},
+  {name:'Veterans & Military',emoji:'🎖️',color:'#1D4ED8'},{name:'Homeless & Housing',emoji:'🏠',color:'#0F766E'},
+  {name:'Food Security',emoji:'🥗',color:'#65A30D'},{name:'International Aid',emoji:'🌍',color:'#0284C7'},
+  {name:'Disaster Relief',emoji:'🆘',color:'#DC2626'},{name:'Legal Aid',emoji:'⚖️',color:'#4338CA'},
+  {name:'Immigration & Refugee',emoji:'🤲',color:'#0891B2'},{name:'LGBTQ+',emoji:'🏳️‍🌈',color:'#7C3AED'},
+  {name:'Racial Justice',emoji:'✊',color:'#B45309'},{name:'Disability Services',emoji:'♿',color:'#059669'},
+  {name:'Mental Health',emoji:'🧠',color:'#8B5CF6'},{name:'Substance Recovery',emoji:'💙',color:'#2563EB'},
+  {name:'Sports & Recreation',emoji:'⚽',color:'#16A34A'},{name:'Library & Literacy',emoji:'📖',color:'#92400E'},
+  {name:'Historical Preservation',emoji:'🏛️',color:'#78716C'},{name:'Science & Research',emoji:'🔬',color:'#0E7490'},
+  {name:'Technology Access',emoji:'💻',color:'#1D4ED8'},{name:'Economic Development',emoji:'📈',color:'#047857'},
+  {name:'Civic Engagement',emoji:'🗳️',color:'#1E40AF'},{name:'Foundation / Grantmaking',emoji:'🏦',color:'#7C3AED'},
 ];
 const FONTS=[
-  // Variable Sans-serif
-  {n:'Montserrat',c:'Variable · Sans'},
-  {n:'Rethink Sans',c:'Variable · Sans'},
-  {n:'Plus Jakarta Sans',c:'Variable · Modern'},
-  {n:'DM Sans',c:'Variable · Clean'},
-  {n:'Outfit',c:'Variable · Geometric'},
-  {n:'Nunito',c:'Variable · Rounded'},
-  {n:'Raleway',c:'Variable · Elegant'},
-  {n:'Poppins',c:'Variable · Friendly'},
-  {n:'Work Sans',c:'Variable · Editorial'},
-  {n:'Josefin Sans',c:'Variable · Art Deco'},
-  {n:'Inter',c:'Variable · Minimal'},
-  {n:'Figtree',c:'Variable · Geometric'},
-  {n:'Manrope',c:'Variable · Modern'},
-  {n:'Urbanist',c:'Variable · Minimal'},
-  {n:'Lexend',c:'Variable · Readable'},
-  {n:'Jost',c:'Variable · Geometric'},
-  {n:'Barlow',c:'Variable · Condensed'},
-  {n:'Cabin',c:'Variable · Humanist'},
-  {n:'Karla',c:'Variable · Grotesque'},
-  {n:'Mulish',c:'Variable · Clean'},
-  // Variable Display
-  {n:'Space Grotesk',c:'Variable · Tech'},
-  {n:'Syne',c:'Variable · Display'},
-  {n:'Epilogue',c:'Variable · Modern'},
-  {n:'Exo 2',c:'Variable · Futuristic'},
-  {n:'Oxanium',c:'Variable · Display'},
-  {n:'Unbounded',c:'Variable · Bold'},
-  // Variable Serif
-  {n:'Playfair Display',c:'Variable · Serif'},
-  {n:'Lora',c:'Variable · Serif'},
-  {n:'Source Serif 4',c:'Variable · Serif'},
-  {n:'Cormorant Garamond',c:'Variable · Luxury'},
-  {n:'Fraunces',c:'Variable · Optical'},
-  {n:'Bitter',c:'Variable · Slab'},
-  {n:'Crimson Pro',c:'Variable · Classic'},
-  {n:'EB Garamond',c:'Variable · Elegant'},
-  // Standard (non-variable but widely used)
-  {n:'Lato',c:'Standard · Classic'},
-  {n:'Merriweather',c:'Standard · Serif'},
-  {n:'Oswald',c:'Standard · Condensed'},
+  {n:'Montserrat',c:'Variable · Sans'},{n:'Rethink Sans',c:'Variable · Sans'},{n:'Plus Jakarta Sans',c:'Variable · Modern'},
+  {n:'DM Sans',c:'Variable · Clean'},{n:'Outfit',c:'Variable · Geometric'},{n:'Nunito',c:'Variable · Rounded'},
+  {n:'Raleway',c:'Variable · Elegant'},{n:'Poppins',c:'Variable · Friendly'},{n:'Work Sans',c:'Variable · Editorial'},
+  {n:'Josefin Sans',c:'Variable · Art Deco'},{n:'Inter',c:'Variable · Minimal'},{n:'Figtree',c:'Variable · Geometric'},
+  {n:'Manrope',c:'Variable · Modern'},{n:'Urbanist',c:'Variable · Minimal'},{n:'Lexend',c:'Variable · Readable'},
+  {n:'Jost',c:'Variable · Geometric'},{n:'Barlow',c:'Variable · Condensed'},{n:'Cabin',c:'Variable · Humanist'},
+  {n:'Karla',c:'Variable · Grotesque'},{n:'Mulish',c:'Variable · Clean'},{n:'Space Grotesk',c:'Variable · Tech'},
+  {n:'Syne',c:'Variable · Display'},{n:'Epilogue',c:'Variable · Modern'},{n:'Exo 2',c:'Variable · Futuristic'},
+  {n:'Unbounded',c:'Variable · Bold'},{n:'Playfair Display',c:'Variable · Serif'},{n:'Lora',c:'Variable · Serif'},
+  {n:'Source Serif 4',c:'Variable · Serif'},{n:'Cormorant Garamond',c:'Variable · Luxury'},
+  {n:'Fraunces',c:'Variable · Optical'},{n:'Bitter',c:'Variable · Slab'},{n:'Crimson Pro',c:'Variable · Classic'},
+  {n:'EB Garamond',c:'Variable · Elegant'},{n:'Lato',c:'Standard · Classic'},
+  {n:'Merriweather',c:'Standard · Serif'},{n:'Oswald',c:'Standard · Condensed'},
 ];
 const CTAS=['Donate','Volunteer','Adopt','Foster','Sponsor','Apply','Register','Get Help','Learn More','Sign Petition','Join Us','Give Now','Take Action'];
 const PAGES=['Home','About','Programs / Services','Donate','Volunteer','Events','Blog / News','Contact','Team','Impact / Annual Report','Get Help','Apply','Membership','Stories','Gallery'];
@@ -568,12 +664,12 @@ const FUNCTIONAL=['SponsorAPurpose Donations','SponsorAPurpose CRM','Event Calen
 const FORMS=['Donation / Payment','Volunteer Application','Adoption Application','Foster Application','Event Registration','Newsletter Signup','Contact Form','Job Application','Grant Application','Pet Surrender','Service Intake','Survey / Feedback'];
 const TONES=['Warm & Hopeful','Bold & Urgent','Professional & Trustworthy','Playful & Friendly','Faith-Centered','Community-Driven','Creative & Artistic'];
 
-let state={npType:'',fontPrefs:[],fonts:{heading:null,body:null,accent:null},primaryCta:'',secondaryCtas:[],pages:[],functional:[],formsCollected:[],tone:'',accentColors:[],logoStatus:'yes'};
+let state={npType:'',fonts:{heading:null,body:null,accent:null},fontPrefs:[],primaryCta:'',secondaryCtas:[],pages:[],functional:[],formsCollected:[],tone:'',accentColors:[],logoStatus:'yes',hasBrandColors:true};
 
 function getClientId(){const p=window.location.pathname.split('/').filter(Boolean);const i=p.indexOf('client');return i!==-1&&p[i+1]?p[i+1]:'direct';}
 
 window.addEventListener('DOMContentLoaded',()=>{
-  renderTypeGrid();renderFontGrid();updateFontPreview();
+  renderTypeGrid();renderFontGrid();
   renderChips('primaryCtaGroup',CTAS,'primaryCta',true,'on-primary');
   renderChips('secondaryCtaGroup',CTAS,'secondaryCtas',false,'on-primary');
   renderChips('pagesGroup',PAGES,'pages',false,'on-primary');
@@ -581,140 +677,68 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderChips('formsGroup',FORMS,'formsCollected',false,'on-primary');
   renderChips('toneGroup',TONES,'tone',true,'on-primary');
   updateColorScale();runColorChecks();updateProgress();
+  // Double RAF ensures preview runs after first paint so inline styles apply correctly
+  requestAnimationFrame(()=>requestAnimationFrame(()=>updatePreview()));
 });
 
 function renderTypeGrid(){
-  document.getElementById('typeGrid').innerHTML=NP_TYPES.map(t=>`<div class="type-card" onclick="selectType('${t.name.replace(/'/g,"\\'")}')" id="type_${t.name.replace(/[^a-z0-9]/gi,'_')}"><span class="type-card-emoji">${t.emoji}</span><div class="type-card-name">${t.name}</div></div>`).join('');
+  document.getElementById('typeGrid').innerHTML=NP_TYPES.map(t=>`<div class="type-card" onclick="selectType('${t.name.replace(/'/g,"\\'")}','${t.emoji}')" id="type_${t.name.replace(/[^a-z0-9]/gi,'_')}"><span class="type-card-emoji">${t.emoji}</span><div class="type-card-name">${t.name}</div></div>`).join('');
 }
-function selectType(name){
+function selectType(name,emoji){
   document.querySelectorAll('.type-card').forEach(c=>c.classList.remove('selected'));
   document.getElementById('type_'+name.replace(/[^a-z0-9]/gi,'_'))?.classList.add('selected');
-  state.npType=name;updateProgress();
+  state.npType=name;state.npEmoji=emoji||'🌟';
+  updateProgress();updatePreview();
 }
 
-// ── FONT SLOTS ──────────────────────────────────────────────────────
-// state.fonts = { heading: null, body: null, accent: null }
-// Extend state on first use
-function ensureFontState(){if(!state.fonts)state.fonts={heading:null,body:null,accent:null};}
-
+// ── FONT RENDERING ────────────────────────────────────────────────────
 function renderFontGrid(){
-  ensureFontState();
   const slots=[
-    {id:'fontGrid_heading',slot:'heading',color:'#0083C6'},
-    {id:'fontGrid_body',   slot:'body',   color:'#3DAA69'},
-    {id:'fontGrid_accent', slot:'accent', color:'#7c3aed'},
+    {id:'fontGrid_heading',slot:'heading',color:'#0083C6',cls:'selected-1'},
+    {id:'fontGrid_body',   slot:'body',   color:'#3DAA69',cls:'selected-2'},
+    {id:'fontGrid_accent', slot:'accent', color:'#7c3aed',cls:'selected-3'},
   ];
-  // Group fonts by category prefix
   const groups={};
-  FONTS.forEach(f=>{
-    const grp=f.c.split(' · ')[0]; // "Variable" or "Standard"
-    const sub=f.c.split(' · ')[1]||f.c;
-    if(!groups[grp])groups[grp]=[];
-    groups[grp].push({...f,sub});
-  });
-
-  slots.forEach(({id,slot,color})=>{
+  FONTS.forEach(f=>{const grp=f.c.split(' · ')[0];const sub=f.c.split(' · ')[1]||f.c;if(!groups[grp])groups[grp]=[];groups[grp].push({...f,sub});});
+  slots.forEach(({id,slot,color,cls})=>{
     const el=document.getElementById(id);if(!el)return;
     let html='';
     Object.entries(groups).forEach(([grp,fonts])=>{
       html+=`<div class="font-section-label">${grp}</div>`;
       fonts.forEach(f=>{
         const sel=state.fonts[slot]===f.n;
-        html+=`<div class="font-card${sel?' selected-1':''}" id="fc_${slot}_${f.n.replace(/ /g,'_')}" onclick="selectFont('${slot}','${f.n.replace(/'/g,"\'")}','${color}')">`+
-          `<div class="font-card-preview" style="font-family:'${f.n}',sans-serif;color:${sel?color:'#0a1628'}">Aa</div>`+
-          `<div class="font-card-name">${f.n}</div>`+
-          `<div class="font-card-cat">${f.sub}</div>`+
-          (sel?`<div class="font-badge" style="background:${color}">✓</div>`:'')+
-        `</div>`;
+        html+=`<div class="font-card${sel?' '+cls:''}" onclick="selectFont('${slot}','${f.n.replace(/'/g,"\\'")}','${color}')">
+          <div class="font-card-preview" style="font-family:'${f.n}',sans-serif;color:${sel?color:'#0a1628'}">Aa</div>
+          <div class="font-card-name">${f.n}</div>
+          <div class="font-card-cat">${f.sub}</div>
+          ${sel?`<div class="font-badge" style="background:${color}">✓</div>`:''}
+        </div>`;
       });
     });
     el.innerHTML=html;
   });
 }
-
 function selectFont(slot,name,color){
-  ensureFontState();
-  // Toggle off if already selected
   state.fonts[slot]=state.fonts[slot]===name?null:name;
-  // Update selected label badge
-  const labelIds={heading:'headingSelected',body:'bodySelected',accent:'accentSelected'};
-  const lbl=document.getElementById(labelIds[slot]);
+  const ids={heading:'headingSelected',body:'bodySelected',accent:'accentSelected'};
+  const lbl=document.getElementById(ids[slot]);
   if(lbl){
     if(state.fonts[slot]){lbl.textContent=state.fonts[slot];lbl.className='font-slot-selected';}
     else{lbl.textContent='None selected';lbl.className='font-slot-selected empty';}
   }
-  // Re-render grid to update selected state
   renderFontGrid();
-  // Update hidden field for submission
-  const fp=[state.fonts.heading,state.fonts.body,state.fonts.accent].filter(Boolean);
-  state.fontPrefs=fp;
+  state.fontPrefs=[state.fonts.heading,state.fonts.body,state.fonts.accent].filter(Boolean);
   const hid=document.getElementById('n_font_prefs');
-  if(hid)hid.value=JSON.stringify({heading:state.fonts.heading,body:state.fonts.body,accent:state.fonts.accent});
-  // Update live preview
-  updateFontPreview();
-  updateProgress();
-}
-
-function updateFontPreview(){
-  ensureFontState();
-  const h=state.fonts.heading,b=state.fonts.body,a=state.fonts.accent;
-  const panel=document.getElementById('fontPreviewPanel');
-  if(!panel)return;
-  const anySelected=h||b||a;
-  panel.style.display=anySelected?'block':'none';
-  if(!anySelected)return;
-
-  // Apply fonts to preview elements
-  const hf=h?`'${h}',sans-serif`:'inherit';
-  const bf=b?`'${b}',sans-serif`:'inherit';
-  const af=a?`'${a}',sans-serif`:hf; // fall back to heading for accent
-
-  const ids={
-    previewEyebrow:   {ff:af,   fw:700},
-    previewHeading:   {ff:hf,   fw:800},
-    previewBody:      {ff:bf,   fw:400},
-    previewCta:       {ff:hf,   fw:700},
-    previewCardTitle: {ff:hf,   fw:700},
-    previewCardBody:  {ff:bf,   fw:400},
-    previewStat1:     {ff:af,   fw:700},
-    previewStat2:     {ff:af,   fw:700},
-    previewStat3:     {ff:af,   fw:700},
-  };
-  Object.entries(ids).forEach(([id,{ff,fw}])=>{
-    const el=document.getElementById(id);
-    if(el){el.style.fontFamily=ff;el.style.fontWeight=fw;}
-  });
-
-  // Update legend
-  const legend=document.getElementById('fontLegend');
-  if(legend){
-    const items=[
-      {slot:'Heading',name:h,color:'#0083C6'},
-      {slot:'Body',name:b,color:'#3DAA69'},
-      {slot:'Accent',name:a,color:'#7c3aed'},
-    ].filter(x=>x.name);
-    legend.innerHTML=items.map(x=>`
-      <div style="display:flex;align-items:center;gap:6px;background:white;border:1px solid #e2e8f0;border-radius:100px;padding:5px 12px 5px 8px">
-        <div style="width:8px;height:8px;border-radius:50%;background:${x.color};flex-shrink:0"></div>
-        <span style="font-size:10px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.06em">${x.slot}</span>
-        <span style="font-size:12px;font-weight:700;color:#0a1628;font-family:'${x.name}',sans-serif">${x.name}</span>
-      </div>`).join('');
-  }
+  if(hid)hid.value=`Heading: ${state.fonts.heading||'Not selected'} | Body: ${state.fonts.body||'Not selected'} | Accent: ${state.fonts.accent||'Not selected'}`;
+  updateProgress();updatePreview();
 }
 
 function renderChips(id,items,key,single,onCls){
   document.getElementById(id).innerHTML=items.map(v=>`<button type="button" class="chip" onclick="toggleChip(this,'${key}','${v.replace(/'/g,"\\'")}',${single},'${onCls}')">${v}</button>`).join('');
 }
 function toggleChip(el,key,val,single,onCls){
-  if(single){
-    el.parentElement.querySelectorAll('.chip').forEach(c=>c.className='chip');
-    el.className='chip '+onCls;
-    state[key]=val;
-  }else{
-    const arr=state[key],i=arr.indexOf(val);
-    if(i!==-1){arr.splice(i,1);el.className='chip';}
-    else{arr.push(val);el.className='chip '+onCls;}
-  }
+  if(single){el.parentElement.querySelectorAll('.chip').forEach(c=>c.className='chip');el.className='chip '+onCls;state[key]=val;}
+  else{const arr=state[key],i=arr.indexOf(val);if(i!==-1){arr.splice(i,1);el.className='chip';}else{arr.push(val);el.className='chip '+onCls;}}
   updateProgress();
 }
 
@@ -724,8 +748,8 @@ function updateColorScale(){
   const hex=document.getElementById('primary_hex').value;
   try{
     const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
-    const swatches=[.15,.3,.5,.7,.85,1].map(t=>{const m=c=>Math.round(c*t+255*(1-t));return`#${m(r).toString(16).padStart(2,'0')}${m(g).toString(16).padStart(2,'0')}${m(b).toString(16).padStart(2,'0')}`;});
-    document.getElementById('primaryScale').innerHTML=swatches.map(c=>`<div class="color-swatch" style="background:${c}" title="${c}" onclick="navigator.clipboard?.writeText('${c}')"></div>`).join('');
+    const sw=[.15,.3,.5,.7,.85,1].map(t=>{const m=c=>Math.round(c*t+255*(1-t));return`#${m(r).toString(16).padStart(2,'0')}${m(g).toString(16).padStart(2,'0')}${m(b).toString(16).padStart(2,'0')}`;});
+    document.getElementById('primaryScale').innerHTML=sw.map(c=>`<div class="color-swatch" style="background:${c}" title="${c}" onclick="navigator.clipboard?.writeText('${c}')"></div>`).join('');
   }catch{}
 }
 function toggleBrandColors(has){
@@ -740,10 +764,7 @@ function setLogo(v){
     document.getElementById('logo'+(s==='yes'?'Yes':s==='in-progress'?'Maybe':'No')).className='toggle-btn'+(s===v?' active':'');
   });
 }
-function addAccentColor(){
-  state.accentColors.push('#'+Math.floor(Math.random()*0xFFFFFF).toString(16).padStart(6,'0'));
-  renderAccents();
-}
+function addAccentColor(){state.accentColors.push('#'+Math.floor(Math.random()*0xFFFFFF).toString(16).padStart(6,'0'));renderAccents();}
 function removeAccentColor(i){state.accentColors.splice(i,1);renderAccents();}
 function updateAccent(i,v){state.accentColors[i]=v;const s=document.getElementById('ac_hex'+i);if(s)s.textContent=v;}
 function renderAccents(){
@@ -752,126 +773,220 @@ function renderAccents(){
 
 function updateProgress(){
   const v=[
-    !!document.getElementById('org_name').value.trim(),
-    !!state.npType,
-    !!document.getElementById('mission').value.trim(),
-    !!document.getElementById('primary_hex').value,
-    (state.fonts.heading||state.fonts.body),
-    !!state.primaryCta,
-    state.pages.length>0,
-    !!state.tone,
-    !!document.getElementById('sq_audience').value.trim(),
+    !!document.getElementById('org_name').value.trim(),!!state.npType,
+    !!document.getElementById('mission').value.trim(),!!document.getElementById('primary_hex').value,
+    !!(state.fonts.heading||state.fonts.body),!!state.primaryCta,state.pages.length>0,
+    !!state.tone,!!document.getElementById('sq_audience').value.trim(),
     !!document.getElementById('sq_goal').value.trim(),
-    !!document.getElementById('contact_name').value.trim(),
-    !!document.getElementById('contact_email').value.trim(),
+    !!document.getElementById('contact_name').value.trim(),!!document.getElementById('contact_email').value.trim(),
   ];
   const p=Math.round(v.filter(Boolean).length/v.length*100);
   document.getElementById('progressFill').style.width=p+'%';
   document.getElementById('progressPct').textContent=p+'%';
 }
 
-// ── COLOR READABILITY & HARMONY ───────────────────────────────
-function hexToRgb(hex){
-  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
-  return{r,g,b};
-}
-function relativeLuminance({r,g,b}){
-  const s=c=>{const v=c/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);};
-  return .2126*s(r)+.7152*s(g)+.0722*s(b);
-}
-function contrastRatio(hex1,hex2){
-  const l1=relativeLuminance(hexToRgb(hex1)),l2=relativeLuminance(hexToRgb(hex2));
-  return(Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05);
-}
-function wcagGrade(ratio){
-  if(ratio>=7)return{grade:'AAA',color:'#16a34a',icon:'✓✓'};
-  if(ratio>=4.5)return{grade:'AA',color:'#2563eb',icon:'✓'};
-  if(ratio>=3)return{grade:'AA Large',color:'#d97706',icon:'◑'};
-  return{grade:'Fail',color:'#dc2626',icon:'✗'};
-}
-function hexToHsl(hex){
-  let{r,g,b}=hexToRgb(hex);r/=255;g/=255;b/=255;
-  const max=Math.max(r,g,b),min=Math.min(r,g,b);
-  let h,s,l=(max+min)/2;
-  if(max===min){h=s=0;}else{
-    const d=max-min;s=l>.5?d/(2-max-min):d/(max+min);
-    switch(max){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;case b:h=(r-g)/d+4;break;}
-    h/=6;
+// ── COLOR MATH ────────────────────────────────────────────────────
+function hexToRgb(hex){return{r:parseInt(hex.slice(1,3),16),g:parseInt(hex.slice(3,5),16),b:parseInt(hex.slice(5,7),16)};}
+function relativeLuminance({r,g,b}){const s=c=>{const v=c/255;return v<=.03928?v/12.92:Math.pow((v+.055)/1.055,2.4);};return .2126*s(r)+.7152*s(g)+.0722*s(b);}
+function contrastRatio(h1,h2){const l1=relativeLuminance(hexToRgb(h1)),l2=relativeLuminance(hexToRgb(h2));return(Math.max(l1,l2)+.05)/(Math.min(l1,l2)+.05);}
+function wcagGrade(r){if(r>=7)return{grade:'AAA',color:'#16a34a',icon:'✓✓'};if(r>=4.5)return{grade:'AA',color:'#2563eb',icon:'✓'};if(r>=3)return{grade:'AA Large',color:'#d97706',icon:'◑'};return{grade:'Fail',color:'#dc2626',icon:'✗'};}
+function hexToHsl(hex){let{r,g,b}=hexToRgb(hex);r/=255;g/=255;b/=255;const max=Math.max(r,g,b),min=Math.min(r,g,b);let h,s,l=(max+min)/2;if(max===min){h=s=0;}else{const d=max-min;s=l>.5?d/(2-max-min):d/(max+min);switch(max){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;case b:h=(r-g)/d+4;break;}h/=6;}return{h:h*360,s:s*100,l:l*100};}
+function colorHarmony(h1,h2){const a=hexToHsl(h1).h,b=hexToHsl(h2).h;const d=Math.min(Math.abs(a-b),360-Math.abs(a-b));if(d<15)return{name:'Monochromatic',desc:'Same hue family — cohesive and safe',score:'good'};if(d>=25&&d<=35)return{name:'Analogous',desc:'Adjacent hues — warm and harmonious',score:'great'};if(d>=60&&d<=80)return{name:'Split-Complementary',desc:'High contrast with balance',score:'great'};if(d>=170&&d<=190)return{name:'Complementary',desc:'Opposite hues — maximum contrast',score:'great'};if(d>=115&&d<=125)return{name:'Triadic',desc:'Three-way balance — vibrant',score:'good'};return{name:'Custom',desc:'Non-standard pairing — review carefully',score:'neutral'};}
+function isHex(h){return /^#[0-9a-f]{6}$/i.test(h);}
+function getTextOnBg(bg){return contrastRatio(bg,'#ffffff')>=contrastRatio(bg,'#0a1628')?'#ffffff':'#0a1628';}
+
+// ── SECTOR DATA ───────────────────────────────────────────────────
+const SECTOR_DATA={
+  'Animal Welfare':{stats:['2,400+ Animals Rescued','$180k Raised Annually','840 Active Donors'],programs:[{icon:'🐾',name:'Rescue & Adoption',desc:'Finding loving homes for animals in need'},{icon:'🏠',name:'Foster Care',desc:'Temporary homes while we find the right match'},{icon:'✂️',name:'Spay & Neuter',desc:'Free & low-cost services for the community'},{icon:'🩺',name:'Vet Assistance',desc:'Emergency medical care for animals in crisis'}]},
+  'Human Services':{stats:['5,000+ Families Helped','$420k Raised Annually','1,200 Active Donors'],programs:[{icon:'🤝',name:'Case Management',desc:'Personalized support for individuals & families'},{icon:'🏘️',name:'Community Outreach',desc:'Meeting people where they are'},{icon:'📦',name:'Basic Needs',desc:'Food, clothing, and emergency supplies'},{icon:'💼',name:'Employment Support',desc:'Job training and placement assistance'}]},
+  'Education':{stats:['3,200+ Students Served','$310k Raised Annually','950 Active Donors'],programs:[{icon:'📚',name:'Tutoring',desc:'1-on-1 academic support K-12'},{icon:'🎓',name:'Scholarships',desc:'Funding futures for deserving students'},{icon:'🌆',name:'After-School',desc:'Safe enrichment programs every weekday'},{icon:'👩‍🏫',name:'Teacher Grants',desc:'Classroom resources for underfunded schools'}]},
+  'Health & Medical':{stats:['8,000+ Patients Served','$560k Raised Annually','1,400 Active Donors'],programs:[{icon:'🏥',name:'Free Clinics',desc:'No-cost care for the uninsured'},{icon:'💊',name:'Medication Access',desc:'Prescription assistance programs'},{icon:'🧘',name:'Wellness Programs',desc:'Prevention and healthy living education'},{icon:'🚑',name:'Mobile Health',desc:'Care brought directly to underserved areas'}]},
+  'Environmental':{stats:['12,000 Acres Protected','$240k Raised Annually','780 Active Donors'],programs:[{icon:'🌿',name:'Conservation',desc:'Protecting natural habitats and wildlife'},{icon:'♻️',name:'Sustainability',desc:'Community recycling and green initiatives'},{icon:'🌱',name:'Urban Greening',desc:'Trees and gardens in city neighborhoods'},{icon:'🔬',name:'Research',desc:'Science-driven environmental advocacy'}]},
+  'Youth & Children':{stats:['4,500+ Youth Reached','$290k Raised Annually','1,100 Active Donors'],programs:[{icon:'🧒',name:'Mentorship',desc:'Connecting youth with caring adult role models'},{icon:'⚽',name:'Youth Sports',desc:'Athletics, teamwork, and healthy habits'},{icon:'🎨',name:'Arts & Creativity',desc:'Expression through music, art, and theater'},{icon:'🏕️',name:'Summer Camp',desc:'Safe, enriching summer experiences'}]},
+  'Food Security':{stats:['6,800+ Meals Per Week','$195k Raised Annually','620 Active Donors'],programs:[{icon:'🥗',name:'Food Pantry',desc:'Fresh groceries for families in need'},{icon:'🍱',name:'Meal Delivery',desc:'Hot meals for seniors and homebound residents'},{icon:'🌽',name:'Community Garden',desc:'Growing fresh produce together'},{icon:'👩‍🍳',name:'Cooking Classes',desc:'Nutrition and food prep skills for all ages'}]},
+  'Mental Health':{stats:['2,100+ Clients Served','$380k Raised Annually','890 Active Donors'],programs:[{icon:'🧠',name:'Counseling',desc:'Affordable therapy for individuals & families'},{icon:'🤲',name:'Crisis Support',desc:'24/7 helpline and intervention services'},{icon:'👥',name:'Support Groups',desc:'Peer community and shared healing'},{icon:'🏫',name:'School Programs',desc:'Mental health education for students'}]},
+  'Faith-Based':{stats:['3,600+ Community Members','$220k Raised Annually','740 Active Donors'],programs:[{icon:'✝️',name:'Worship & Fellowship',desc:'Welcoming services for all'},{icon:'🤲',name:'Community Care',desc:'Practical help for neighbors in need'},{icon:'📖',name:'Youth Ministry',desc:'Faith formation for the next generation'},{icon:'🌍',name:'Mission Work',desc:'Local and global outreach programs'}]},
+  'Homeless & Housing':{stats:['1,800 Housed Last Year','$470k Raised Annually','1,050 Active Donors'],programs:[{icon:'🏠',name:'Emergency Shelter',desc:'Safe beds for those in immediate need'},{icon:'🔑',name:'Rapid Rehousing',desc:'Fast-track back to stable housing'},{icon:'💼',name:'Job Readiness',desc:'Skills and support for self-sufficiency'},{icon:'🧳',name:'Transitional Housing',desc:'Bridge housing with wraparound support'}]},
+  'Veterans & Military':{stats:['2,900 Vets Supported','$340k Raised Annually','980 Active Donors'],programs:[{icon:'🎖️',name:'Benefits Navigation',desc:'Helping veterans access earned benefits'},{icon:'🏠',name:'Housing Assistance',desc:'Stable homes for veterans in need'},{icon:'🧠',name:'Mental Health',desc:'PTSD, TBI, and peer support services'},{icon:'💼',name:'Career Services',desc:'Translating service into civilian careers'}]},
+  'Arts & Culture':{stats:['15,000 Visitors Annually','$260k Raised Annually','690 Active Donors'],programs:[{icon:'🎭',name:'Performances',desc:'Theater, dance, and live events year-round'},{icon:'🎨',name:'Exhibitions',desc:'Visual art from local and emerging artists'},{icon:'👩‍🎓',name:'Education',desc:'Arts education for all ages'},{icon:'🤝',name:'Community Arts',desc:'Programs that bring neighborhoods together'}]},
+};
+const DEFAULT_SECTOR={stats:['1,200+ Served Annually','$180k Raised','640 Active Donors'],programs:[{icon:'🌟',name:'Core Programs',desc:'Direct services for those we serve'},{icon:'🤝',name:'Community Outreach',desc:'Connecting with neighbors in need'},{icon:'📋',name:'Volunteer Program',desc:'Engaging supporters in meaningful work'},{icon:'📣',name:'Advocacy',desc:'Raising awareness and driving change'}]};
+
+// ── LIVE PREVIEW ──────────────────────────────────────────────────
+function updatePreview(){
+  const pri=document.getElementById('primary_hex')?.value||'#0083C6';
+  const sec=document.getElementById('secondary_hex')?.value||'#3DAA69';
+  const orgName=document.getElementById('org_name')?.value||'Your Organization';
+  const npType=state.npType||'';
+  const npEmoji=state.npEmoji||'🌟';
+
+  const hf=state.fonts.heading?`'${state.fonts.heading}',sans-serif`:"'Rethink Sans',sans-serif";
+  const bf=state.fonts.body?`'${state.fonts.body}',sans-serif`:"'Rethink Sans',sans-serif";
+  const af=state.fonts.accent?`'${state.fonts.accent}',sans-serif`:hf;
+
+  const textOnPri=isHex(pri)?getTextOnBg(pri):'#ffffff';
+  const textOnSec=isHex(sec)?getTextOnBg(sec):'#ffffff';
+  const validPri=isHex(pri)?pri:'#0083C6';
+  const validSec=isHex(sec)?sec:'#3DAA69';
+
+  const sector=SECTOR_DATA[npType]||DEFAULT_SECTOR;
+
+  // Nav
+  const nav=document.getElementById('lp_nav');
+  if(nav) nav.style.background=`linear-gradient(135deg,${validPri}ee,${validPri}bb)`;
+  const navIcon=document.getElementById('lp_nav_icon');
+  if(navIcon) navIcon.textContent=npEmoji||'🐄';
+  const orgEl=document.getElementById('lp_orgname');
+  if(orgEl){orgEl.textContent=orgName;orgEl.style.fontFamily=hf;}
+
+  // Hero
+  const hero=document.getElementById('lp_hero');
+  if(hero) hero.style.background=`linear-gradient(145deg,${validPri}dd,${validPri}99)`;
+  const eyebrow=document.getElementById('lp_eyebrow');
+  if(eyebrow){eyebrow.textContent=`${npEmoji} ${npType||'Our Mission'}`;eyebrow.style.fontFamily=af;}
+  const headline=document.getElementById('lp_headline');
+  if(headline){headline.style.fontFamily=hf;}
+  const body=document.getElementById('lp_body');
+  if(body){body.style.fontFamily=bf;}
+  const cta=document.getElementById('lp_cta');
+  if(cta){cta.style.background=validSec;cta.style.color=textOnSec;cta.style.fontFamily=hf;}
+
+  // Impact bar
+  const impBar=document.getElementById('lp_impact_bar');
+  if(impBar) impBar.style.borderTopColor=validSec;
+  const impVals=[document.getElementById('lp_imp1'),document.getElementById('lp_imp2'),document.getElementById('lp_imp3')];
+  const impLabs=[document.getElementById('lp_imp1_lab'),document.getElementById('lp_imp2_lab'),document.getElementById('lp_imp3_lab')];
+  sector.stats.forEach((s,i)=>{
+    const parts=s.split(' ');
+    const val=parts[0]; const lab=parts.slice(1).join(' ');
+    if(impVals[i]){impVals[i].textContent=val;impVals[i].style.color=validPri;impVals[i].style.fontFamily=hf;}
+    if(impLabs[i]){impLabs[i].textContent=lab;impLabs[i].style.fontFamily=bf;}
+  });
+
+  // Program cards
+  const progEyebrow=document.getElementById('lp_prog_eyebrow');
+  if(progEyebrow){progEyebrow.style.color=validPri;progEyebrow.style.fontFamily=af;}
+  const progHeadline=document.getElementById('lp_prog_headline');
+  if(progHeadline){progHeadline.style.fontFamily=hf;if(npType) progHeadline.textContent=`What we do`;}
+  const progGrid=document.getElementById('lp_prog_grid');
+  if(progGrid){
+    progGrid.innerHTML=sector.programs.map(p=>`
+      <div class="lp-prog-card" style="background:${validPri}10;border-color:${validPri}25">
+        <div class="lp-prog-card-icon">${p.icon}</div>
+        <div class="lp-prog-card-name" style="font-family:${hf}">${p.name}</div>
+        <div class="lp-prog-card-desc" style="font-family:${bf}">${p.desc}</div>
+      </div>`).join('');
   }
-  return{h:h*360,s:s*100,l:l*100};
+
+  // Donation card
+  const donSec=document.getElementById('lp_donate_section');
+  if(donSec) donSec.style.background=`linear-gradient(145deg,${validPri}f2,${validSec}cc)`;
+  const donLabel=document.getElementById('lp_donate_label');
+  if(donLabel){donLabel.style.fontFamily=hf;}
+  const donBtn=document.getElementById('lp_donate_btn');
+  if(donBtn){donBtn.style.background='white';donBtn.style.color=validPri;donBtn.style.fontFamily=hf;}
+  const amt3=document.getElementById('lp_amt3');
+  if(amt3){amt3.style.color=validPri;}
+  const primaryCtaText=state.primaryCta||'Donate Now';
+  if(donBtn) donBtn.textContent=`${primaryCtaText} →`;
+
+  // Footer
+  const footer=document.getElementById('lp_footer');
+  if(footer) footer.style.background=`linear-gradient(135deg,${validPri}ee,${validPri}bb)`;
+  const footerName=document.getElementById('lp_footer_name');
+  if(footerName){footerName.textContent=orgName;footerName.style.fontFamily=hf;}
+  const footerEmoji=document.getElementById('lp_footer_emoji');
+  if(footerEmoji) footerEmoji.textContent=npEmoji||'🐄';
+  const footerCta=document.getElementById('lp_footer_cta');
+  if(footerCta){footerCta.style.background=validSec;footerCta.style.color=textOnSec;footerCta.style.fontFamily=hf;footerCta.textContent=state.primaryCta||'Donate Today';}
+
+  // Contrast + harmony
+  updateContrastBadges(validPri,validSec);
+
+  // Font legend in preview panel
+  const legend=document.getElementById('fontLegendPanel');
+  if(legend){
+    const items=[
+      {slot:'Heading',name:state.fonts.heading,color:'#0083C6'},
+      {slot:'Body',name:state.fonts.body,color:'#3DAA69'},
+      {slot:'Accent',name:state.fonts.accent,color:'#7c3aed'},
+    ].filter(x=>x.name);
+    legend.innerHTML=items.map(x=>`
+      <div class="font-legend-item">
+        <div class="font-legend-dot" style="background:${x.color}"></div>
+        <span class="font-legend-slot">${x.slot}</span>
+        <span class="font-legend-name" style="font-family:'${x.name}',sans-serif">${x.name}</span>
+      </div>`).join('');
+  }
 }
-function colorHarmony(hex1,hex2){
-  const h1=hexToHsl(hex1).h,h2=hexToHsl(hex2).h;
-  const diff=Math.abs(h1-h2);
-  const d=Math.min(diff,360-diff);
-  if(d<15)return{name:'Monochromatic',desc:'Same hue family — cohesive and safe',score:'good'};
-  if(d>=25&&d<=35)return{name:'Analogous',desc:'Adjacent hues — warm and harmonious',score:'great'};
-  if(d>=60&&d<=80)return{name:'Split-Complementary',desc:'High contrast with balance — strong choice',score:'great'};
-  if(d>=170&&d<=190)return{name:'Complementary',desc:'Opposite hues — maximum contrast and energy',score:'great'};
-  if(d>=115&&d<=125)return{name:'Triadic',desc:'Three-way balance — vibrant and dynamic',score:'good'};
-  if(d>=85&&d<=95)return{name:'Square',desc:'Even spacing — bold and structured',score:'good'};
-  return{name:'Custom',desc:'Non-standard pairing — review carefully',score:'neutral'};
+
+function updateContrastBadges(pri,sec){
+  const grid=document.getElementById('contrastGrid');
+  if(!grid)return;
+  if(!isHex(pri)||!isHex(sec)){grid.innerHTML='';return;}
+  const checks=[
+    {label:'Text on primary',bg:pri,text:'#ffffff'},
+    {label:'Text on secondary',bg:sec,text:'#ffffff'},
+  ];
+  grid.innerHTML=checks.map(c=>{
+    const r=contrastRatio(c.bg,c.text);
+    const g=wcagGrade(r);
+    return`<div class="contrast-badge">
+      <div class="contrast-swatch" style="background:${c.bg};color:${c.text}">Aa</div>
+      <div class="contrast-info">
+        <div class="contrast-label">${c.label}</div>
+        <div class="contrast-ratio">${r.toFixed(1)}:1</div>
+      </div>
+      <div class="contrast-grade" style="background:${g.color}20;color:${g.color};border:1px solid ${g.color}40">${g.icon} ${g.grade}</div>
+    </div>`;
+  }).join('');
+  // Harmony
+  const h=colorHarmony(pri,sec);
+  const hc={great:'#16a34a',good:'#2563eb',neutral:'#d97706'};
+  const hRow=document.getElementById('harmonyRow');
+  if(hRow){
+    hRow.style.display='flex';
+    hRow.style.background=hc[h.score]+'12';
+    hRow.style.border=`1px solid ${hc[h.score]}30`;
+    document.getElementById('harmonyName').textContent=h.name+' Pairing';
+    document.getElementById('harmonyDesc').textContent=h.desc;
+    document.getElementById('harmonyIcon').textContent=h.score==='great'?'✅':h.score==='good'?'👍':'⚠️';
+  }
 }
+
+// In-form color check panel (detailed version)
 function runColorChecks(){
   const p=document.getElementById('primary_hex').value;
   const s=document.getElementById('secondary_hex').value;
-  if(!(/^#[0-9a-f]{6}$/i.test(p)&&/^#[0-9a-f]{6}$/i.test(s)))return;
-  
   const panel=document.getElementById('colorCheckPanel');
   const results=document.getElementById('colorCheckResults');
-  panel.style.display='block';
-  
-  const checks=[];
-  
-  // White text on primary
-  const pwRatio=contrastRatio(p,'#ffffff');
-  const pwGrade=wcagGrade(pwRatio);
-  checks.push({label:'White text on primary',ratio:pwRatio,grade:pwGrade,preview:{bg:p,text:'#fff',sample:'Aa Donate Now'}});
-  
-  // Dark text on primary
-  const pdRatio=contrastRatio(p,'#0a1628');
-  const pdGrade=wcagGrade(pdRatio);
-  checks.push({label:'Dark text on primary',ratio:pdRatio,grade:pdGrade,preview:{bg:p,text:'#0a1628',sample:'Aa Donate Now'}});
-  
-  // White text on secondary
-  const swRatio=contrastRatio(s,'#ffffff');
-  const swGrade=wcagGrade(swRatio);
-  checks.push({label:'White text on secondary',ratio:swRatio,grade:swGrade,preview:{bg:s,text:'#fff',sample:'Aa Volunteer'}});
-  
-  // Primary on white bg
-  const poRatio=contrastRatio(p,'#ffffff');
-  // already computed above — reuse
-  
-  // Primary vs Secondary contrast
-  const psRatio=contrastRatio(p,s);
-  const psGrade=wcagGrade(psRatio);
-  checks.push({label:'Primary vs Secondary',ratio:psRatio,grade:psGrade,preview:{bg:p,text:s,sample:'Aa'}});
-  
-  // Harmony
+  if(!isHex(p)||!isHex(s)){if(panel)panel.style.display='none';return;}
+  if(panel)panel.style.display='block';
+  const checks=[
+    {label:'White text on primary',bg:p,text:'#ffffff',sample:'Aa Donate Now'},
+    {label:'Dark text on primary',bg:p,text:'#0a1628',sample:'Aa Donate Now'},
+    {label:'White text on secondary',bg:s,text:'#ffffff',sample:'Aa Volunteer'},
+    {label:'Primary vs Secondary',bg:p,text:s,sample:'Aa'},
+  ];
   const harmony=colorHarmony(p,s);
-  const harmonyColors={great:'#16a34a',good:'#2563eb',neutral:'#d97706'};
-  
-  results.innerHTML=checks.map(c=>`
-    <div style="display:flex;align-items:center;gap:10px;background:white;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px">
-      <div style="background:${c.preview.bg};color:${c.preview.text};border-radius:7px;padding:6px 10px;font-size:13px;font-weight:700;flex-shrink:0;min-width:80px;text-align:center">${c.preview.sample}</div>
-      <div style="flex:1">
-        <div style="font-size:12px;font-weight:700;color:#334155">${c.label}</div>
-        <div style="font-size:11px;color:#64748b">Contrast ratio: ${c.ratio.toFixed(2)}:1</div>
-      </div>
-      <div style="background:${c.grade.color}15;color:${c.grade.color};border:1px solid ${c.grade.color}40;border-radius:7px;padding:3px 9px;font-size:11px;font-weight:800;flex-shrink:0">${c.grade.icon} ${c.grade.grade}</div>
-    </div>
-  `).join('')+`
-    <div style="background:${harmonyColors[harmony.score]}12;border:1px solid ${harmonyColors[harmony.score]}30;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px">
+  const hc={great:'#16a34a',good:'#2563eb',neutral:'#d97706'};
+  if(results){
+    results.innerHTML=checks.map(c=>{
+      const r=contrastRatio(c.bg,c.text);const g=wcagGrade(r);
+      return`<div style="display:flex;align-items:center;gap:10px;background:white;border:1px solid #e2e8f0;border-radius:10px;padding:10px 12px">
+        <div style="background:${c.bg};color:${c.text};border-radius:7px;padding:6px 10px;font-size:12px;font-weight:700;flex-shrink:0;min-width:80px;text-align:center;transition:background .3s">${c.sample}</div>
+        <div style="flex:1"><div style="font-size:12px;font-weight:700;color:#334155">${c.label}</div><div style="font-size:11px;color:#64748b">${r.toFixed(2)}:1</div></div>
+        <div style="background:${g.color}15;color:${g.color};border:1px solid ${g.color}40;border-radius:7px;padding:3px 9px;font-size:11px;font-weight:800;flex-shrink:0">${g.icon} ${g.grade}</div>
+      </div>`;
+    }).join('')+`<div style="background:${hc[harmony.score]}12;border:1px solid ${hc[harmony.score]}30;border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:10px">
       <div style="font-size:20px">🎨</div>
-      <div>
-        <div style="font-size:12px;font-weight:800;color:#334155">${harmony.name} Pairing</div>
-        <div style="font-size:11px;color:#64748b">${harmony.desc}</div>
-      </div>
+      <div><div style="font-size:12px;font-weight:800;color:#334155">${harmony.name} Pairing</div><div style="font-size:11px;color:#64748b">${harmony.desc}</div></div>
       <div style="margin-left:auto;font-size:18px">${harmony.score==='great'?'✅':harmony.score==='good'?'👍':'⚠️'}</div>
-    </div>
-  `;
+    </div>`;
+  }
 }
 
+// ── SUBMIT ────────────────────────────────────────────────────────
 async function handleSubmit(){
   const req={'Organization Name':document.getElementById('org_name').value.trim(),'Organization Type':state.npType,'Mission Statement':document.getElementById('mission').value.trim(),'Target Audience':document.getElementById('sq_audience').value.trim(),'Website Goal':document.getElementById('sq_goal').value.trim(),'Your Name':document.getElementById('contact_name').value.trim(),'Your Email':document.getElementById('contact_email').value.trim()};
   const missing=Object.entries(req).filter(([,v])=>!v).map(([k])=>k);
@@ -910,13 +1025,4 @@ async function handleSubmit(){
     const json=await res.json();
     if(!json.success)throw new Error(json.message||'Failed');
     document.getElementById('mainForm').style.display='none';
-    document.getElementById('thankYouScreen').style.display='block';
-    window.scrollTo(0,0);
-  }catch{
-    btn.disabled=false;btn.textContent='Submit Intake Form →';
-    alert('Something went wrong. Please try again or email hello@sponsorapurpose.org');
-  }
-}
-</script>
-</body>
-</html>
+    document.getElementById('thankYouScreen').style.dis
