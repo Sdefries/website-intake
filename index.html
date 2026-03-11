@@ -110,9 +110,10 @@ body{font-family:'Rethink Sans',sans-serif;background:var(--bg);color:var(--text
 .font-legend-slot{font-size:9px;font-weight:700;color:var(--subtle);text-transform:uppercase;letter-spacing:.06em}
 .font-legend-name{font-size:10px;font-weight:700;color:var(--navy)}
 /* SECTION CARDS */
-.section-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-bottom:16px;transition:box-shadow .2s}
+.section-card{background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:visible;margin-bottom:16px;transition:box-shadow .2s}
 .section-card:focus-within{box-shadow:0 0 0 3px rgba(0,131,198,.12)}
-.section-header{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:1px solid var(--border);background:var(--bg)}
+.section-header{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--border);background:var(--card);border-radius:20px 20px 0 0;overflow:hidden}
+
 .section-icon{font-size:18px;line-height:1;flex-shrink:0}
 .section-title{font-weight:800;font-size:14px;color:var(--navy)}
 .section-body{padding:20px;display:flex;flex-direction:column;gap:18px}
@@ -144,24 +145,24 @@ input[type=color]::-webkit-color-swatch{border:none;border-radius:7px}
 .add-accent-btn:hover{background:rgba(0,131,198,.12);border-color:var(--primary)}
 /* FONT PICKER */
 .font-picker{position:relative;width:100%}
-.fp-trigger{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border:1.5px solid var(--border);border-radius:12px;background:white;cursor:pointer;transition:border-color .15s,box-shadow .15s;user-select:none}
+.fp-trigger{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;min-height:52px;border:1.5px solid var(--border);border-radius:12px;background:white;cursor:pointer;transition:border-color .15s,box-shadow .15s;user-select:none}
 .fp-trigger:hover,.fp-trigger.open{border-color:var(--primary);box-shadow:0 0 0 3px rgba(0,131,198,.12)}
-.fp-trigger-preview{font-size:15px;font-weight:600;color:var(--text);flex:1}
-.fp-trigger-preview.empty{color:var(--subtle);font-size:14px;font-weight:400;font-style:italic}
+.fp-trigger-preview{font-size:16px;font-weight:700;color:var(--navy);flex:1;font-family:inherit;transition:font-family .1s}
+.fp-trigger-preview.empty{color:var(--subtle);font-size:13px;font-weight:400;font-style:italic;font-family:'Rethink Sans',sans-serif!important}
 .fp-trigger-arrow{color:var(--subtle);font-size:12px;margin-left:8px;transition:transform .2s}
 .fp-trigger.open .fp-trigger-arrow{transform:rotate(180deg)}
 .fp-dropdown{position:absolute;top:calc(100% + 6px);left:0;right:0;background:white;border:1.5px solid var(--border);border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,.13);z-index:200;overflow:hidden}
-.fp-hover-preview{padding:14px 16px;min-height:70px;border-bottom:1px solid var(--border);font-size:28px;font-weight:700;color:var(--navy);line-height:1.2;background:#fafbfc;display:flex;align-items:center;transition:font-family .15s}
+.fp-hover-preview{padding:16px 18px;min-height:76px;border-bottom:1px solid var(--border);font-size:26px;font-weight:700;color:var(--navy);line-height:1.25;background:#f8fafc;display:flex;align-items:center;transition:font-family .1s}
 .fp-hover-preview.placeholder{font-size:13px;font-weight:400;color:var(--subtle);font-family:'Rethink Sans',sans-serif!important}
-.fp-list{max-height:240px;overflow-y:auto;padding:6px}
-.fp-list::-webkit-scrollbar{width:4px}.fp-list::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.fp-group-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--subtle);padding:8px 10px 4px;display:block}
-.fp-option{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:10px;cursor:pointer;transition:background .1s}
+.fp-list{max-height:320px;overflow-y:auto;padding:6px}
+.fp-list::-webkit-scrollbar{width:5px}.fp-list::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+.fp-group-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--subtle);padding:10px 12px 4px;display:block;font-family:'Rethink Sans',sans-serif}
+.fp-option{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:10px;cursor:pointer;transition:background .1s}
 .fp-option:hover{background:var(--primary-light)}
 .fp-option.selected{background:rgba(0,131,198,.12)}
-.fp-option-name{font-size:14px;font-weight:600;color:var(--navy)}
-.fp-option-cat{font-size:11px;color:var(--subtle)}
-.fp-option-check{color:var(--primary);font-weight:800;font-size:14px}
+.fp-option-name{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.fp-option-cat{font-size:10px;color:var(--subtle);margin-left:8px;white-space:nowrap}
+.fp-option-check{color:var(--primary);font-weight:800;font-size:14px;margin-left:6px}
 .chip-group{display:flex;flex-wrap:wrap;gap:8px}
 .chip{padding:7px 14px;border:1.5px solid var(--border);border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;transition:all .12s;background:white;color:var(--muted);user-select:none;font-family:inherit}
 .chip:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-light)}
@@ -752,8 +753,15 @@ function selectFontPicker(slot,fontName){
   state.fonts[slot]=state.fonts[slot]===fontName?null:fontName;
   const prev=document.getElementById('fp_'+slot+'_preview');
   if(prev){
-    if(state.fonts[slot]){prev.textContent=state.fonts[slot];prev.style.fontFamily=`'${state.fonts[slot]}',sans-serif`;prev.classList.remove('empty');}
-    else{prev.textContent='None selected';prev.style.fontFamily='';prev.classList.add('empty');}
+    if(state.fonts[slot]){
+      prev.textContent=state.fonts[slot];
+      prev.style.cssText=`font-family:'${state.fonts[slot]}',sans-serif;font-size:16px;font-weight:700;color:var(--navy)`;
+      prev.classList.remove('empty');
+    }else{
+      prev.textContent='None selected';
+      prev.style.cssText='';
+      prev.classList.add('empty');
+    }
   }
   document.getElementById('fp_'+slot+'_dropdown').style.display='none';
   document.getElementById('fp_'+slot+'_trigger').classList.remove('open');
