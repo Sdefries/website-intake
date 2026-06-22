@@ -176,7 +176,7 @@ function buildFormPayload() {
   const assetSummary = [['Logo files','asset_logo'],['Brand guidelines','asset_brand'],['Videos','asset_videos'],['Written copy','asset_copy'],['Testimonials','asset_testimonials']]
     .map(([lbl, k]) => `${lbl}: ${g(k) || '—'}`).join(' | ');
 
-  return {
+  const d2 = {
     access_key: '8fbbf96d-63b4-42d6-a881-53a960e9999d',
     subject: `New intake form — ${g('orgName') || 'Unknown org'} (${getClientId()})`,
     from_name: g('contactName') || 'SponsorAPurpose Intake',
@@ -229,6 +229,13 @@ function buildFormPayload() {
     comms_people: g('commsPeople'),
     anything_else: g('anythingElse'),
   };
+  // Web3Forms requires a 'message' field — build a readable summary
+  d2.message = Object.entries(d2)
+    .filter(([k]) => !['access_key','subject','from_name','replyto'].includes(k))
+    .map(([k, v]) => v ? `${k}: ${v}` : null)
+    .filter(Boolean)
+    .join('\n');
+  return d2;
 }
 
 async function submit() {
@@ -236,21 +243,30 @@ async function submit() {
   setState(s => ({ tried: { ...s.tried, 11: true } }));
   if (Object.keys(errs).length > 0) { window.scrollTo(0,0); return; }
 
-  setState({ submitting: true });
+  setState({ submitting: true, submitError: null });
 
   try {
     const payload = buildFormPayload();
-    await fetch('https://api.web3forms.com/submit', {
+    const res = await fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify(payload),
     });
+    const json = await res.json();
+    if (!res.ok || json.success === false) {
+      console.error('Web3Forms error:', json);
+      setState({ submitting: false, submitError: json.message || 'Submission failed. Please try again.' });
+      window.scrollTo(0,0);
+      return;
+    }
   } catch (e) {
-    // If fetch fails (e.g. local testing), still show thank-you
-    console.warn('Web3Forms submit error:', e);
+    console.error('Web3Forms fetch error:', e);
+    setState({ submitting: false, submitError: 'Network error. Please check your connection and try again.' });
+    window.scrollTo(0,0);
+    return;
   }
 
-  setState({ submitted: true, submitting: false });
+  setState({ submitted: true, submitting: false, submitError: null });
   window.scrollTo(0,0);
 }
 
@@ -981,6 +997,13 @@ function render() {
 
   // card
   const card = div('background:#fff;border:1px solid #CBD5E1;border-radius:16px;box-shadow:0 1px 3px 0 rgba(0,0,0,.10),0 1px 2px -1px rgba(0,0,0,.10);padding:28px 28px 32px;');
+
+  if (state.submitError) {
+    card.appendChild(div('display:flex;align-items:flex-start;gap:10px;padding:12px 16px;border:1px solid #FCA5A5;background:#FEF2F2;border-radius:12px;margin-bottom:24px;',
+      h('i',{className:'ph ph-warning-circle',style:'font-size:18px;color:#DC2626;margin-top:1px;flex-shrink:0;'}),
+      span('font-size:13px;color:#B91C1C;letter-spacing:-0.2px;line-height:1.4;', state.submitError)
+    ));
+  }
 
   if (tried && Object.keys(errs).length > 0) {
     card.appendChild(div('display:flex;align-items:flex-start;gap:10px;padding:12px 16px;border:1px solid #FCA5A5;background:#FEF2F2;border-radius:12px;margin-bottom:24px;',
