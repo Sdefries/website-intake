@@ -93,7 +93,7 @@ function setState(patch) {
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 function get(key, def) { const v = state.data[key]; return v === undefined ? (def === undefined ? '' : def) : v; }
 function set(key, val) { setState(s => ({ data: { ...s.data, [key]: val } })); }
-function txt(key) { return (e) => set(key, e.target.value); }
+function txt(key) { return (e) => { state.data[key] = e.target.value; }; }
 function arr(key) { const a = state.data[key]; return Array.isArray(a) ? a : []; }
 function toggle(key, val, cap) {
   setState(s => {
